@@ -1,0 +1,25 @@
+<template name="Users">
+        {{#if isInRole 'super-admin'}}
+            <h1 class="page-title">Users</h1>
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Email</th>
+                    <th>First Name</th>
+                    <th>Created At</th>
+                    <th>Admin</th>
+                </tr>
+             {{#each users}} 
+            <tr>
+                <td>{{_id}}</td>
+                <td>{{userEmail}}</td>
+                <td>{{profile.firstName}}</td>
+                <td>{{createdAt}}</td>
+                <td>{{isAdmin}}</td>
+            </tr>
+                {{/each}}  
+            </table>
+        {{else}}
+        <h1>You are not Authorised to View this Page</h1>
+        {{/if}}
+    </template>

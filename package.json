@@ -1,0 +1,24 @@
+{
+  "name": "managementsystem",
+  "version": "1.0.0",
+  "description": "It is a simple management system with user roles",
+  "main": "routes.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rsidhu07/Management-System-Doctor-Patient.git"
+  },
+  "keywords": [
+    "management",
+    "system",
+    "CRUD"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rsidhu07/Management-System-Doctor-Patient/issues"
+  },
+  "homepage": "https://github.com/Rsidhu07/Management-System-Doctor-Patient#readme"
+}
