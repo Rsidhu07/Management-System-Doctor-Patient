@@ -1,11 +1,10 @@
 ## Prerequisite
- ...
+ 
  
  Meteor Installed on your system!
  
  You can install by following the link : https://www.meteor.com/install
 
-...
 
 ## How To Use
 
@@ -18,7 +17,6 @@ meteor
 
 ## Open up http://localhost:3000 and see this.
 
-...
 
 ## What is this?
 
