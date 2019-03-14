@@ -1,6 +1,3 @@
-# Level Up Tutorials Meteor Blaze Base
-
-
 ## How To Use
 
 Clone or download this repo. Browse to wherever downloaded in your terminal.
@@ -12,7 +9,7 @@ meteor
 
 Open up http://localhost:3000 and see this.
 
-![Topics In Meteor](/public/topics.png)
+![Topics In Meteor]
 
 ## What is this?
 
