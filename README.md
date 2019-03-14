@@ -3,7 +3,7 @@
  
  Meteor Installed on your system!
  
- You can install by following the link : https://www.meteor.com/install
+ You can install it by following the link : https://www.meteor.com/install
 
 
 ## How To Use
