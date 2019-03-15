@@ -29,7 +29,7 @@ AccountsTemplates.addFields([
         select: [
             {
                 text: 'SuperAdmin',
-                value: 'superadmin'
+                value: 'super-admin'
             }, {
                 text: 'Doctor',
                 value: 'doctor'

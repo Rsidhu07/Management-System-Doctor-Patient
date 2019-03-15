@@ -12,6 +12,7 @@ Template.Users.helpers({
         return this.emails[0].address;
     },
     isAdmin: function() {
-        return Roles.userIsInRole(this._id, 'super-admin') ? 'super-admin' : 'normal user';
+        return Roles.userIsInRole(this._id, 'super-admin') ? 'super-admin' : Roles.userIsInRole(this._id, 'patient') ? 'patient' : Roles.userIsInRole(this._id, 'doctor') ? 'doctor' : 'normal user' ;
+
     }
 });
