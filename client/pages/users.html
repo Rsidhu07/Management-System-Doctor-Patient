@@ -1,7 +1,7 @@
 <template name="Users">
         {{#if isInRole 'super-admin'}}
             <h1 class="page-title">Users</h1>
-            <table>
+            <table class= "{{editMode}}">
                 <tr>
                     <th>Id</th>
                     <th>Email</th>
@@ -11,11 +11,23 @@
                 </tr>
              {{#each users}} 
             <tr>
-                <td>{{_id}}</td>
+                <td class="user_id">{{_id}}</td>
                 <td>{{userEmail}}</td>
                 <td>{{profile.firstName}}</td>
-                <td>{{createdAt}}</td>
-                <td>{{isAdmin}}</td>
+                <td>{{dateFormat}}</td>
+                <td>{{isAdmin}}
+                    {{#if currentEdit}}
+                    <div class="user-edit">
+                        <i class="fa fa-close close-edit-mode"></i>
+                        <h3>Edit User</h3>
+                        {{#if $eq isAdmin 'super-admin'}}
+                        <button class="toggle-admin">Remove Admin</button>                        
+                        {{else}}
+                        <button class="toggle-admin">Make Admin</button>
+                        {{/if}}
+                    </div>
+                    {{/if}}
+                </td>
             </tr>
                 {{/each}}  
             </table>

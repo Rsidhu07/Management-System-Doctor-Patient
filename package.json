@@ -9,11 +9,12 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.1.5",
-    "meteor-node-stubs": "^0.4.1"
+    "meteor-node-stubs": "^0.4.1",
+    "moment": "^2.24.0"
   },
   "meteor": {
     "mainModule": {
-      "main": "routes.js"
+      "server": "routes.js"
     },
     "testModule": "tests/main.js"
   }

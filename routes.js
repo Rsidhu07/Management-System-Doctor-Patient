@@ -28,3 +28,11 @@ adminRoutes.route('/users', {
         BlazeLayout.render("AppLayout", {main: "Users"});
     }
 })
+
+FlowRouter.notFound =  { 
+    action: function() {
+
+        BlazeLayout.render('not-found');
+
+    }
+};
