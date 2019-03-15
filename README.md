@@ -1,5 +1,3 @@
-# Level Up Tutorials Meteor Blaze Base
-
 
 ## How To Use
 
