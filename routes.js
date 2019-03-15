@@ -1,4 +1,7 @@
 // Home Page
+//routes
+
+console.log("this is routes");
 FlowRouter.route('/', {
     name: 'home',
     action() {

@@ -1,24 +1,20 @@
 {
-  "name": "managementsystem",
-  "version": "1.0.0",
-  "description": "It is a simple management system with user roles",
-  "main": "routes.js",
+  "name": "mg-dp",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "meteor run",
+    "test": "meteor test --once --driver-package meteortesting:mocha",
+    "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
+    "visualize": "meteor --production --extra-packages bundle-visualizer"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Rsidhu07/Management-System-Doctor-Patient.git"
+  "dependencies": {
+    "@babel/runtime": "^7.1.5",
+    "meteor-node-stubs": "^0.4.1"
   },
-  "keywords": [
-    "management",
-    "system",
-    "CRUD"
-  ],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Rsidhu07/Management-System-Doctor-Patient/issues"
-  },
-  "homepage": "https://github.com/Rsidhu07/Management-System-Doctor-Patient#readme"
+  "meteor": {
+    "mainModule": {
+      "main": "routes.js"
+    },
+    "testModule": "tests/main.js"
+  }
 }
