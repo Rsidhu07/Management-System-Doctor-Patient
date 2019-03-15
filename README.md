@@ -6,17 +6,12 @@
 Clone or download this repo. Browse to wherever downloaded in your terminal.
 
 ```
-cd base-blaze
+cd Management-System-Doctor-Patient
 meteor
 ```
 
 Open up http://localhost:3000 and see this.
 
-![Topics In Meteor](/public/topics.png)
-
-## What is this?
-
-This is the base repo for starting any of the Meteor Blaze Topics Tutorials 
 
 ## What this is not
 
