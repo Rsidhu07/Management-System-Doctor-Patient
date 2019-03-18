@@ -1,12 +1,12 @@
 <template name="MainNav">
     <nav class="main-nav">
         <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/"><h4>Home</h4></a></li>
+            <li><a href="/dashboard"><h4>Dashboard</h4></a></li>
         {{#if currentUser}}
-            <li class="logout"><a href="/">Logout</a></li>
+            <li><h4>Welcome <b> {{currentUserName}}</b></h4></li><li class="logout"><a href="/"> <h4> [Logout] </h4></a></li>
            {{else}}
-            <li class="login-toggle">Login/Sign-up</li>
+            <li class="login-toggle"><h4>Login/Sign-up</h4></li>
         {{/if}}
         </ul>
     </nav>

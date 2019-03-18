@@ -10,3 +10,14 @@ Template.MainNav.events({
 
     }
 });
+
+Template.MainNav.helpers({
+
+    currentUserName: function(){
+        
+       return Meteor.user().profile.firstName;
+
+    },
+
+
+});

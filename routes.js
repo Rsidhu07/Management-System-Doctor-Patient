@@ -29,6 +29,32 @@ adminRoutes.route('/users', {
     }
 })
 
+let patientRoutesUpdate = FlowRouter.group({
+    prefix : '/update',
+    name   : 'update'
+});
+
+patientRoutesUpdate.route('/patientProfileUpdate', { 
+
+    name : 'patientsUpdate',
+    action(){
+        BlazeLayout.render("AppLayout", {main: "updatePatientRecords"});
+    }
+})
+
+let patientRoutesView = FlowRouter.group({
+    prefix : '/view',
+    name   : 'view' 
+});
+
+patientRoutesView.route('/patientProfileView', { 
+
+    name : 'patientsView',
+    action(){
+        BlazeLayout.render("AppLayout", {main: "viewPatientRecords"});
+    }
+})
+
 FlowRouter.notFound =  { 
     action: function() {
 
@@ -36,3 +62,4 @@ FlowRouter.notFound =  {
 
     }
 };
+

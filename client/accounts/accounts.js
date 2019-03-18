@@ -3,6 +3,7 @@ let MyLogoutFunc = function(){
     FlowRouter.go('/');
 };
 
+
 AccountsTemplates.configure({
 
     confirmPassword: false,

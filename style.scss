@@ -1,6 +1,7 @@
 @import 'sass/_normalize.scss';
 @import 'sass/_base.scss';
 
+
 html {
     box-sizing: border-box;
 }
@@ -12,11 +13,13 @@ html {
 body {
     color: $text;
     font-family: 'Open Sans', sans-serif;
+    
 }
 
 h1 {
     font-weight: 100;
     font-size: 3.998em;
+    text-align: center;
 }
 
 h2 {
@@ -206,6 +209,7 @@ table {
         background: $dblue;
         color: #fff;
     }
+     
     &.edit-mode {
         transform: translate3d(300px, 0, 0);
     }
