@@ -1,5 +1,5 @@
 <template name= "viewPatientRecords">
-
+    {{#if isInRole 'patient,super-admin'}}
    <h1>This is View records page for Patient...</h1>
 
    <div>
@@ -41,5 +41,9 @@
         </tr>
       </table>
     </div>
+    {{else}}
 
+    <h3>Only Patients or Super Admin are allowed to view this page!</h3>
+
+    {{/if}}
 </template>

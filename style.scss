@@ -246,3 +246,35 @@ table {
 .edit-mode .user-edit {
     opacity: 1;
 }
+
+form {
+    .input {
+      margin-bottom: 1px;
+      width: 100%;
+      display: block;
+
+      input {
+        width: 100%;
+        padding: .75rem;
+      }
+    }
+
+    label {
+      display: block;
+    }
+
+    .btn-primary {
+      margin: 1em 5% 0;
+      width: 90%;
+
+      @media screen and (min-width: 40em) {
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+      }
+    }
+
+    .at-pwd-link {
+      margin-top: 1em;
+    }
+  }

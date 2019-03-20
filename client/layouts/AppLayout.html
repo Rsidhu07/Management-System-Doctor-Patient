@@ -3,6 +3,8 @@
     
     {{#if isInRole 'super-admin'}}
     {{> AppNav}}
+    {{else}}
+    {{> AppNavPatDoc}}
     {{/if}}
     
     <main class="app-layout">

@@ -5,7 +5,7 @@
                 <tr>
                     <th>Id</th>
                     <th>Email</th>
-                    <th>First Name</th>
+                    <th>User Name</th>
                     <th>Created At</th>
                     <th>Roles</th>
                 </tr>
@@ -13,7 +13,7 @@
             <tr>
                 <td class="user_id">{{_id}}</td>
                 <td>{{userEmail}}</td>
-                <td>{{profile.firstName}}</td>
+                <td>{{profile.name}}</td>
                 <td>{{dateFormat}}</td>
                 <td>{{isAdmin}}
                     {{#if currentEdit}}

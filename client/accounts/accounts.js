@@ -17,26 +17,26 @@ AccountsTemplates.configure({
 AccountsTemplates.addFields([
 
     {
-        _id        : 'firstName',
+        _id        : 'name',
         type       : 'text',
-        displayName: 'First Name',
+        displayName: 'Name',
         required   : true,
-        re         : /(?=.*[a-z])(?=.*[A-Z])/,
-        errStr     : 'At least 1 lower-case and 1 upper-case',
+        // re         : /(?=.*[a-z])(?=.*[A-Z])/,
+        // errStr     : 'At least 1 lower-case and 1 upper-case',
     },{
         _id: 'category',
         type: 'select',
-        displayName: 'Category',
+        displayName: 'Roles(Category)',
         select: [
             {
-                text: 'SuperAdmin',
-                value: 'super-admin'
+                text : 'Patient',
+                value: 'patient'
             }, {
                 text: 'Doctor',
                 value: 'doctor'
             }, {
-                text : 'Patient',
-                value: 'patient'
+                text: 'SuperAdmin',
+                value: 'super-admin'
             }
         ]
     }

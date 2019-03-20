@@ -1,5 +1,5 @@
 <template name= "updatePatientRecords">
-
+  {{#if isInRole 'patient,super-admin'}}
     <div>
       <h2 >This is update records page for Patient...</h2><br />
     </div>
@@ -66,6 +66,12 @@
       <br><br>     
 
       <img src="http://localhost:3000/images/{{fileRef}}" alt="FileImageUploaded" width="250" height="150" />
+
+      {{else}}
+
+      <h3>Only Patients or Super Admin are allowed to view this page!</h3>
+
+      {{/if}}
      
 </template>
 

@@ -18,6 +18,18 @@ Template.updatePatientRecords.events({
         const location     = target.location.value;
         const nationality  = target.nationality.value;
         const bloodGroup   = target.bloodGroup.value;
+
+        const data = {
+          target,
+          fullName,
+          dateofBirth,
+          location,
+          nationality,
+          bloodGroup
+
+        };
+
+        Meteor.call('update-patient-details', data);
         
 
         console.log("Event is : ",fullName, "", dateofBirth, "" , location, "", nationality, "" ,bloodGroup);

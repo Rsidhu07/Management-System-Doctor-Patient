@@ -15,7 +15,7 @@ Template.MainNav.helpers({
 
     currentUserName: function(){
         
-       return Meteor.user().profile.firstName;
+       return Meteor.user().profile.name;
 
     },
 
