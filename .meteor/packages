@@ -31,3 +31,7 @@ raix:handlebar-helpers
 aldeed:template-extension
 alanning:roles
 
+twbs:bootstrap
+ostrio:files
+ostrio:templatehelpers
+

@@ -7,34 +7,37 @@
     <form class="add-patientDetails">
         <div class="  form-group">
           <label for="fullName">Full Name</label>
-          <input type="text" class="form-control" id="fullName" placeholder="Email">
+          <input type="text" class="form-control" id="fullName" placeholder="Full Name">
         </div>
 
         <div class="form-group">
           <label for="dateofBirth">Date of Birth</label>
-          <input type="date" class="form-control" id="dateofBirth" placeholder="Password">
+          <input type="date" class="form-control" id="dateofBirth" placeholder="Date of Birth">
         </div>
         
         <div class="form-group">
             <label for="location">Location</label>
-            <input type="text" class="form-control" id="location" placeholder="Password">
+            <input type="text" class="form-control" id="location" placeholder="Location">
         </div>
         
         <div class="form-group">
             <label for="nationality">Nationality</label>
-            <input type="text" class="form-control" id="nationality" placeholder="Password">
+            <input type="text" class="form-control" id="nationality" placeholder="Nationality">
         </div>
         
         <div class="form-group">
             <label for="bloodGroup">BloodGroup</label>
-            <input type="text" class="form-control" id="bloodGroup" placeholder="Password">
+            <input type="text" class="form-control" id="bloodGroup" placeholder="BloodGroup">
         </div>
         
+      
         <div class="form-group">
           <label for="inputFile">Upload profile picture</label>
           <input type="file" id="inputFile">
           <p class="help-block">Please prefer smaller in size images.</p>
         </div>
+        <p><small>Upload file in <code>jpeg</code> or <code>png</code> format, with size less or equal to 10MB</small></p>
+        
         
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
@@ -43,21 +46,26 @@
       <form>
         <div class="form-group">
           <label for="surgeryNumber">Surgery Number</label>
-          <input type="text" class="form-control" id="surgeryNumber" placeholder="Email">
+          <input type="text" class="form-control" id="surgeryNumber" placeholder="Surgery Number">
         </div>
 
         <div class="form-group">
           <label for="dateofSurgery">Date of Surgery</label>
-          <input type="date" class="form-control" id="dateofSurgery" placeholder="Password">
+          <input type="date" class="form-control" id="dateofSurgery" placeholder="Date of Surgery">
         </div>
         
         <div class="form-group">
             <label for="description">Description</label>
-            <input type="text" class="form-control" id="description" placeholder="Password">
+            <input type="text" class="form-control" id="description" placeholder="Description">
         </div>   
 
         <button type="submit" class="btn btn-primary">Submit</button>
 
       </form>
 
+      <br><br>     
+
+      <img src="http://localhost:3000/images/{{fileRef}}" alt="FileImageUploaded" width="250" height="150" />
+     
 </template>
+

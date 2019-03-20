@@ -1,3 +1,5 @@
+import Images from '../imports/imagesCollection.js';
+
 Meteor.methods({
     toggleAdmin(id){      
         if(Roles.userIsInRole(id, 'super-admin')){
@@ -6,5 +8,6 @@ Meteor.methods({
             Roles.addUsersToRoles(id, 'super-admin');
 
         }
-    }
+    },  
+    
 });

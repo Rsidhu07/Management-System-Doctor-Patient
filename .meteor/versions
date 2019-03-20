@@ -80,6 +80,9 @@ npm-bcrypt@0.7.8_2
 npm-mongo@1.4.42
 observe-sequence@1.0.10
 ordered-dict@1.0.6
+ostrio:cookies@2.0.4
+ostrio:files@1.5.6
+ostrio:templatehelpers@1.1.2
 promise@0.6.6
 raix:handlebar-helpers@0.2.5
 random@1.0.8
@@ -101,6 +104,7 @@ standard-minifier-js@1.0.5
 templating@1.1.8
 templating-tools@1.0.3
 tracker@1.0.12
+twbs:bootstrap@3.3.6
 ui@1.0.10
 underscore@1.0.7
 url@1.0.8
