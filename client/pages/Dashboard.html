@@ -1,7 +1,12 @@
 <template name="Dashboard">
-    {{#if admin}}
+    <!-- {{#if admin}}
     <h1 class="page-title">Dashboard</h1>
     {{else}}
     <h1>You are not Authorised to View this Page</h1>
+    {{/if}} -->
+    {{#if isInRole 'super-admin,patient,doctor'}}
+        <h3>Welcome <b>{{currentUserName}}</b> to your Dashboard.</h3>
+        {{else}}
+            <h3>Please login to view your Dashboard!</h3>
     {{/if}}
 </template>

@@ -2,9 +2,15 @@
     {{> Header}}
     
     {{#if isInRole 'super-admin'}}
-    {{> AppNav}}
+        {{> AppNav}}
     {{else}}
-    {{> AppNavPatDoc}}
+        {{#if isInRole 'patient'}}
+            {{> AppNavPatient}}
+        {{else}}
+            {{#if isInRole 'doctor'}}
+                {{> AppNavDoctor}}
+            {{/if}}
+        {{/if}}   
     {{/if}}
     
     <main class="app-layout">

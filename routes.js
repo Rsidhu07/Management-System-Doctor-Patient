@@ -1,7 +1,7 @@
 // Home Page
 //routes
 
-console.log("this is routes");
+
 FlowRouter.route('/', {
     name: 'home',
     action() {
@@ -29,6 +29,7 @@ adminRoutes.route('/users', {
     }
 })
 
+//Group Routes for Patient
 let patientRoutesUpdate = FlowRouter.group({
     prefix : '/update',
     name   : 'update'
@@ -55,6 +56,8 @@ patientRoutesView.route('/patientProfileView', {
     }
 })
 
+
+//Page not Found route
 FlowRouter.notFound =  { 
     action: function() {
 
@@ -63,3 +66,46 @@ FlowRouter.notFound =  {
     }
 };
 
+//Privacy Policy Route
+FlowRouter.route('/privacypolicy', {
+    name: 'privacyPolicy',
+    action() {
+        BlazeLayout.render("AppLayout", {main: "PrivacyPolicy"});
+    }
+});
+
+//Terms of use Route
+FlowRouter.route('/termsofuse', {
+    name: 'termsOfUse',
+    action() {
+        BlazeLayout.render("AppLayout", {main: "TermsofUse"});
+    }
+});
+
+//Group Routes for Doctor
+
+let doctorRoutesUpdate = FlowRouter.group({
+    prefix : '/update',
+    name   : 'update'
+});
+
+doctorRoutesUpdate.route('/doctorProfileUpdate', { 
+
+    name : 'doctorsUpdate',
+    action(){
+        BlazeLayout.render("AppLayout", {main: "updateDoctorRecords"});
+    }
+})
+
+let doctorRoutesView = FlowRouter.group({
+    prefix : '/view',
+    name   : 'view' 
+});
+
+doctorRoutesView.route('/doctorProfileView', { 
+
+    name : 'doctorsView',
+    action(){
+        BlazeLayout.render("AppLayout", {main: "viewDoctorRecords"});
+    }
+})

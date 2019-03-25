@@ -2,7 +2,8 @@ import './updatePatientRecords.html';
 import Images from '../../imports/imagesCollection.js';
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
-import { Tracker } from 'meteor/tracker';
+
+
 
 
 Template.updatePatientRecords.events({
@@ -12,35 +13,38 @@ Template.updatePatientRecords.events({
         event.preventDefault();
 
 
-        const target       = event.target;
-        const fullName     = target.fullName.value;
-        const dateofBirth  = target.dateofBirth.value;
-        const location     = target.location.value;
-        const nationality  = target.nationality.value;
-        const bloodGroup   = target.bloodGroup.value;
+        const target          = event.target;
+        const fullName        = target.fullName.value;
+        const dateofBirth     = target.dateofBirth.value;
+        const location        = target.location.value;
+        const nationality     = target.nationality.value;
+        const bloodGroup      = target.bloodGroup.value;
+        
 
         const data = {
-          target,
           fullName,
           dateofBirth,
           location,
           nationality,
-          bloodGroup
+          bloodGroup,
+          
 
         };
 
-        Meteor.call('update-patient-details', data);
+          console.log("Data is :***********************", data);
+        
         
 
         console.log("Event is : ",fullName, "", dateofBirth, "" , location, "", nationality, "" ,bloodGroup);
 
+        //Code for File/Image handling starts here
+
         if (target.inputFile.files && target.inputFile.files[0]) {
-            // We upload only one file, in case
-            // there was multiple files selected
+            // We upload only one file...
             const file = target.inputFile.files[0]; 
             if (file) {
               const uploadInstance = Images.insert({
-                file: file,
+                file   : file,
                 streams: 'dynamic',
                 chunkSize: 'dynamic'
               }, false);
@@ -51,18 +55,41 @@ Template.updatePatientRecords.events({
       
               uploadInstance.on('end', function(error, fileObj) {
                 if (error) {
-                  window.alert('Error during upload: ' + error.reason);
+                  console.log('Error during upload: ' + error.reason);
                 } else {
-                  window.alert('File "' + fileObj.name + '" successfully uploaded');
+                  console.log('File "' + fileObj.name + '" successfully uploaded');
                 }
                 template.currentUpload.set(false);
               });
       
               uploadInstance.start();
             }
-          }
-    }
+          }// Code for File/Image Handling ends here.
+          
+          Meteor.call('updatePatientDetails', data);  
 
+          
+    },
+    // for surgery details form
+    'submit .add-patientSurgeryDetails': function(event){
+
+      event.preventDefault();
+
+      const target             = event.target;
+      const surgeryNumber      = target.surgeryNumber.value;
+      const dateofSurgery      = target.dateofSurgery.value;
+      const surgeryDescription = target.description.value;
+
+      const surgeryData = {
+        surgeryNumber,
+        dateofSurgery,
+        surgeryDescription
+
+      };
+
+      Meteor.call('updatePatientSurgeryDetails', surgeryData);
+
+    }
 });
 
 Template.updatePatientRecords.helpers({
@@ -81,27 +108,18 @@ Template.updatePatientRecords.helpers({
 
   Template.updatePatientRecords.onCreated(function(){
     Meteor.subscribe('files.images.all');
+    Meteor.subscribe('allPatients');
 
-  })
+  });
 
   Template.updatePatientRecords.onCreated(function () {
     this.currentUpload = new ReactiveVar(false);
     Meteor.subscribe('files.images.all');
-    // console.log("djdhshkjd", abc.ready());
-    // // Meteor.subscribe('files.images.all')
-    // setTimeout(()=>{
-    //     console.log("autorunaboveif");
-    //     if(abc.ready()){
-    //     console.log("autorun");
-    //     }
-    // },2000)
+   
 });
   
   Template.updatePatientRecords.helpers({
     currentUpload() {
       return Template.instance().currentUpload.get();
     },
-
-
-
   });

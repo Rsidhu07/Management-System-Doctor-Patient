@@ -2,9 +2,28 @@
     <div class="billboard">
         <h2>Topics In Meteor</h2>
         <h3>By Deligence Technologies</h3>
-        <div class="btn-group">
-            <a href="/update/patientProfileUpdate" class="btn-text">Add Record and update your profile</a>
-            <a href="/view/patientProfileView" class="btn-text">View Record and your Profile</a>
-        </div>
+
+        {{#if isInRole 'patient'}}
+            <div class="btn-group">
+                <a href="/update/patientProfileUpdate" class="btn-text">Add Record and update your profile</a>
+                <a href="/view/patientProfileView" class="btn-text">View Record and your Profile</a>
+            </div>
+
+            {{else}}
+                {{#if isInRole 'super-admin'}}
+
+                    <div class="btn-group">
+                            <a href="/update/patientProfileUpdate" class="btn-text">Add Record and update to Patient profile</a>
+                            <a href="/view/patientProfileView" class="btn-text">View Record and Patient Profile</a>
+                        </div>
+                {{else}}
+                    {{#if isInRole 'doctor'}}
+                        <a href="/update/doctorProfileUpdate" class="btn-text">Add Record and update your profile</a>
+                        <a href="/view/doctorProfileView" class="btn-text">View Record and your Profile</a>
+                        {{else}}
+                             <a href="/" class="btn-text btn-click-login">Please Sign in to continue..</a>
+                    {{/if}}
+                {{/if}}
+        {{/if}}
     </div>
 </template>

@@ -1,3 +1,7 @@
 import { Mongo } from 'meteor/mongo';
 
-export const PatientRecords = new Mongo.Collection('patientRecords');
+const PatientRecords = new Mongo.Collection('patientrecords');
+
+export default PatientRecords;
+
+export const PatientSurgeryRecords = new Mongo.Collection('patientSurgeryRecords');

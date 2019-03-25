@@ -1,0 +1,9 @@
+<template name="updateDoctorRecords">
+
+    {{#if isInRole 'doctor,super-admin'}}
+
+    <h3>This is update page for Doctor Records</h3>
+        {{else}}
+            <h3>Only Doctors or Super admin can view this page..</h3>
+    {{/if}}
+</template>
