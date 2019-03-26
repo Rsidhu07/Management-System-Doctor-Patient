@@ -42,6 +42,8 @@ Meteor.methods({
             
         });
 
+        
+
     },
 
     'updatePatientSurgeryDetails'(surgeryData){

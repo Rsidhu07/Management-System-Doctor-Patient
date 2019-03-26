@@ -311,9 +311,9 @@ form {
   /*** Profile: Header  ***/
   .profile__avatar {
     float: left;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
+    width: 100px;
+    height: 1000px;
+    border-radius: 100%;
     margin-right: 20px;
     overflow: hidden;
   }
@@ -324,8 +324,11 @@ form {
     }
   }
   .profile__avatar > img {
-    width: 100%;
-    height: auto;
+    
+    width: 111%;
+    height: 100px;
+    // width: 100%;
+    // height: auto;
   }
   .profile__header {
     overflow: hidden;

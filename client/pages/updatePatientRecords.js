@@ -87,29 +87,43 @@ Template.updatePatientRecords.events({
 
       };
 
+      
+
       Meteor.call('updatePatientSurgeryDetails', surgeryData);
 
+      window.alert("Patient Record added Successfully");
+
     }
 });
 
-Template.updatePatientRecords.helpers({
-     fileRef(){ 
-       let image =  Images.find({}).fetch();
-       console.log("images length is",image.length);
+// Template.updatePatientRecords.helpers({
+//      fileRef(){
        
-       for(let i=0 ; i < image.length ; i++){
+//       const cursor = Images.find({});
+//       let image = cursor.get();
+//       console.log("Cursor get is ", image);
+
+//      image.forEach(function(){
+
+//       return image._id + "." + image.extension;
+
+//      });
+//       //  let image =  Images.find({}).fetch();
+//       //  console.log("images length is",image.length);
+       
+//       //  for(let i=0 ; i < image.length ; i++){
             
-            return image[i]._id + "." + image[i].extension;
+//       //       return image[i]._id + "." + image[i].extension;
        
-      }
+//       // }
        
-    }
-});
+//     }
+// });
 
   Template.updatePatientRecords.onCreated(function(){
     Meteor.subscribe('files.images.all');
     Meteor.subscribe('allPatients');
-
+    Meteor.subscribe('allPatientsSurgeryRecord');
   });
 
   Template.updatePatientRecords.onCreated(function () {
@@ -123,3 +137,6 @@ Template.updatePatientRecords.helpers({
       return Template.instance().currentUpload.get();
     },
   });
+  
+
+
