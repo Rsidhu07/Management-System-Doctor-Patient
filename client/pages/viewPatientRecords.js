@@ -1,4 +1,4 @@
-import PatientRecords from '../../imports/collections';
+import PatientDocRecords from '../../imports/collections';
 import { PatientSurgeryRecords } from '../../imports/collections';
 import Images from '../../imports/imagesCollection.js';
 
@@ -6,7 +6,7 @@ Template.viewPatientRecords.helpers({
 
     recordsPrint(){
 
-        return PatientRecords.find({username: Meteor.user().profile.name});
+        return PatientDocRecords.find({username: Meteor.user().profile.name});
     },
 
     currentUserRole(){
@@ -66,3 +66,48 @@ Template.modalForm.events({
   }
 
 });
+
+Template.modalFormEdit.events({
+
+  'submit .update-patientSurgeryDetails': function(event){
+  
+      event.preventDefault();
+  
+      let tempSelectedRecordID = Session.get('tempSelectedRecordID');
+
+      const target             = event.target;
+      const surgeryNumber      = target.surgeryNumber.value;
+      const dateofSurgery      = target.dateofSurgery.value;
+      const surgeryDescription = target.description.value;
+  
+      const surgeryData = {
+        surgeryNumber,
+        dateofSurgery,
+        surgeryDescription,
+        tempSelectedRecordID
+  
+      }; 
+      Meteor.call('updateSelectedPatientSurgeryDetails', surgeryData);
+  
+      // window.alert("Patient Record added Successfully");
+  
+    }
+  
+  });
+
+Template.viewPatientRecords.events({
+
+  'click .btn-edit': function(event){
+
+    Session.set('tempSelectedRecordID', this._id);
+
+  },
+  'click .btn-del': function(event){
+
+   Meteor.call('deleteSelectedSurgeryRecord', this);
+
+  },
+  
+
+});
+

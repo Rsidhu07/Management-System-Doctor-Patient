@@ -1,5 +1,5 @@
 import Images from '../imports/imagesCollection';
-import PatientRecords from '../imports/collections.js';
+import PatientDocRecords from '../imports/collections.js';
 import { PatientSurgeryRecords } from '../imports/collections';
 
 Meteor.publish('allUsers', function(){
@@ -13,7 +13,7 @@ Meteor.publish('allUsers', function(){
   });
 
   Meteor.publish('allPatients', function () {
-    return PatientRecords.find({});
+    return PatientDocRecords.find({});
   });
 
   Meteor.publish('allPatientsSurgeryRecord', function () {

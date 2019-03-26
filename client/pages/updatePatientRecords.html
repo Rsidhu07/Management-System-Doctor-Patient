@@ -1,7 +1,7 @@
 <template name= "updatePatientRecords">
-  {{#if isInRole 'patient,super-admin'}}
+  {{#if isInRole 'patient,super-admin,doctor'}}
     <div>
-      <h2 >This is update records page for Patient...</h2><br />
+      <h2 >This is update records page for Patient and Doctor...</h2><br />
     </div>
 
     <form class="add-patientDetails">
@@ -42,8 +42,10 @@
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
 
-      <br /> <br /> <h2>Add Surgery Details here</h2>
+      {{#if isInRole 'super-admin,patient'}}
 
+      <br /> <br /> <h2>Add Surgery Details here</h2>
+     
       <form class="add-patientSurgeryDetails">
         <div class="form-group">
           <label for="surgeryNumber">Surgery Number</label>
@@ -63,6 +65,7 @@
         <button type="submit" class="btn btn-primary">Submit</button>
 
       </form>
+      {{/if}}
       
       <!-- <br><br>     
       {{#each fileRef}}
@@ -70,7 +73,7 @@
       {{/each}}
        -->
        {{else}}
-      <h3>Only Patients or Super Admin are allowed to view this page!</h3>
+      <h3>You must be logged in to access this page!</h3>
 
       {{/if}}
      

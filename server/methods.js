@@ -1,5 +1,5 @@
 import { Meteor } from "meteor/meteor";
-import PatientRecords from '../imports/collections';
+import PatientDocRecords from '../imports/collections';
 import  SimpleSchema  from 'simpl-schema';
 import { check } from "meteor/check";
 import { PatientSurgeryRecords } from '../imports/collections';
@@ -30,7 +30,7 @@ Meteor.methods({
             throw new Meteor.Error('not-authorized');
         }
 
-        PatientRecords.insert({
+        PatientDocRecords.insert({
             'fullName'     : data.fullName ,
             'dateofBirth'  : data.dateofBirth,
             'location'     : data.location,
@@ -59,11 +59,33 @@ Meteor.methods({
             'surgeryNumber'      : surgeryData.surgeryNumber,
             'dateofSurgery'      : surgeryData.dateofSurgery,
             'surgeryDescription' : surgeryData.surgeryDescription,
-            createdAt        : new Date(),
-            owner            : Meteor.userId(),
-            username         : Meteor.user().profile.name,
+                createdAt        : new Date(),
+                owner            : Meteor.userId(),
+                username         : Meteor.user().profile.name,
         });
 
-    }
+    },
+
+    'updateSelectedPatientSurgeryDetails'(surgeryData){
+
+        if(!Meteor.userId()){
     
+            console.log("Error called");
+    
+            throw new Meteor.Error('not-authorized');
+        }
+
+        PatientSurgeryRecords.update( surgeryData.tempSelectedRecordID,  {
+            $set:{ surgeryNumber      : surgeryData.surgeryNumber,
+                    dateofSurgery     : surgeryData.dateofSurgery,
+                    surgeryDescription: surgeryData.surgeryDescription
+                },
+          });
+    },
+
+    'deleteSelectedSurgeryRecord': function(data){
+
+        PatientSurgeryRecords.remove(data._id);
+
+    }
 });
