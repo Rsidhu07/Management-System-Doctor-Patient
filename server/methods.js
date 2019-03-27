@@ -2,7 +2,7 @@ import { Meteor } from "meteor/meteor";
 import PatientDocRecords from '../imports/collections';
 import  SimpleSchema  from 'simpl-schema';
 import { check } from "meteor/check";
-import { PatientSurgeryRecords } from '../imports/collections';
+import { PatientSurgeryRecords, PatientVisitRecords } from '../imports/collections';
 
 const myMethodObjArgSchema = new SimpleSchema({ 'fullName': String, 'dateofBirth' : String, 'location': String, 'nationality': String, 'bloodGroup': String}, { check });
 
@@ -87,5 +87,29 @@ Meteor.methods({
 
         PatientSurgeryRecords.remove(data._id);
 
+    },
+
+    'addPatientVisit': function(visitData){
+
+        console.log('Method for visit details called');
+
+        if(!Meteor.userId()){
+    
+            console.log("Error called");
+    
+            throw new Meteor.Error('not-authorized');
+        }
+
+        return PatientVisitRecords.insert({
+
+            'visitNumber'     : visitData.visitNumber,
+            'dateofVisit'     : visitData.dateofVisit,
+            'visitDescription': visitData.visitDescription,
+            'surgeryNumber'   : visitData.surgeryNumber,
+             createdAt        : new Date(),
+             owner            : Meteor.userId(),
+             username         : Meteor.user().profile.name,
+
+        });
     }
 });

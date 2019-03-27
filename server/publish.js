@@ -1,6 +1,6 @@
 import Images from '../imports/imagesCollection';
 import PatientDocRecords from '../imports/collections.js';
-import { PatientSurgeryRecords } from '../imports/collections';
+import { PatientSurgeryRecords, PatientVisitRecords } from '../imports/collections';
 
 Meteor.publish('allUsers', function(){
     if(Roles.userIsInRole(this.userId, 'super-admin')) {    
@@ -18,4 +18,8 @@ Meteor.publish('allUsers', function(){
 
   Meteor.publish('allPatientsSurgeryRecord', function () {
     return PatientSurgeryRecords.find({});
+  });
+
+  Meteor.publish('allPatientsVisitRecord', function () {
+    return PatientVisitRecords.find({});
   });

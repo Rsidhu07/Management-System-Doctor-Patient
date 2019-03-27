@@ -1,4 +1,4 @@
-import PatientDocRecords from '../../imports/collections';
+import PatientDocRecords, { PatientVisitRecords } from '../../imports/collections';
 import { PatientSurgeryRecords } from '../../imports/collections';
 import Images from '../../imports/imagesCollection.js';
 
@@ -18,6 +18,12 @@ Template.viewPatientRecords.helpers({
     surgeryRecordsPrint(){
 
         return PatientSurgeryRecords.find({username: Meteor.user().profile.name});
+    },
+
+    surgeryVisitRecordsPrint(){
+
+        return PatientVisitRecords.find({});
+
     }
    
 });
@@ -26,6 +32,7 @@ Template.viewPatientRecords.onCreated(function(){
     Meteor.subscribe('files.images.all');
     Meteor.subscribe('allPatients');
     Meteor.subscribe('allPatientsSurgeryRecord');
+    Meteor.subscribe('allPatientsVisitRecord');
   });
 
 
@@ -95,11 +102,50 @@ Template.modalFormEdit.events({
   
   });
 
+  Template.modalFormAddVisit.events({
+
+    'submit .add-patientVisitDetails': function(event){
+
+      event.preventDefault();
+      // event.stopPropagation();
+
+      const target           = event.target;
+      const visitNumber      = target.visitNumber.value;
+      const dateofVisit      = target.dateofVisit.value;
+      const visitDescription = target.visitDescription.value;
+      const surgeryNumber    = Session.get('tempSelectedRecordSurgeryNumber');
+
+      const visitData = {
+
+        visitNumber,
+        dateofVisit,
+        visitDescription,
+        surgeryNumber
+
+      };
+
+      Meteor.call('addPatientVisit', visitData);
+      
+    }
+
+  });
+
+  Template.modalFormEdit.helpers({
+
+    editDataHelper(){
+
+      return Session.get('tempSelectedRecord');
+    }
+
+  });
+
 Template.viewPatientRecords.events({
 
   'click .btn-edit': function(event){
 
     Session.set('tempSelectedRecordID', this._id);
+
+    Session.set('tempSelectedRecord', this);
 
   },
   'click .btn-del': function(event){
@@ -107,7 +153,12 @@ Template.viewPatientRecords.events({
    Meteor.call('deleteSelectedSurgeryRecord', this);
 
   },
-  
+
+  'click .btn-addVisit': function(){
+
+    Session.set('tempSelectedRecordSurgeryNumber', this.surgeryNumber);
+
+  }  
 
 });
 

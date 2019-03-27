@@ -1,151 +1,157 @@
 <template name= "viewPatientRecords">
     {{#if isInRole 'patient,super-admin,doctor'}}
    <h1>This is View Page for Profile...</h1>
-
       <div class="container">
-            <div class="row">
-                  <div class="col-xs-12 col-sm-9">
-                    
-                    <!-- User profile -->
-                    <div class="panel panel-default">
-                      <div class="panel-heading">
-                      <h4 class="panel-title">User profile</h4>
-                      </div>
-                      <div class="panel-body">
-                        <div class="profile__avatar">
-                          <img src="http://localhost:3000/images/{{fileReference}}" alt="...">
-                        </div>
-                        <div class="profile__header">
-                          {{#each recordsPrint}}
-                          <h4>{{fullName}} <small><b>({{currentUserRole}})</b></small></h4>
-                          {{/each}}
-                          <p class="text-muted">
-                              
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non nostrum odio cum repellat veniam eligendi rem cumque magnam autem delectus qui.
-                          </p>
-                          <p>
-                            <a href="#">bootdey.com</a>
-                          </p>
-                        </div>
-                      </div>
+          <div class="row">
+              <div class="col-xs-12 col-sm-9">
+               <!-- User profile -->
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">User profile</h4>
+                  </div>
+                  <div class="panel-body">
+                    <div class="profile__avatar">
+                      <img src="http://localhost:3000/images/{{fileReference}}" alt="...">
+                  </div>
+                    <div class="profile__header">
+                      {{#each recordsPrint}}
+                      <h4>{{fullName}} <small><b>({{currentUserRole}})</b></small></h4>
+                      {{/each}}
+                      <p class="text-muted">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non nostrum odio cum repellat veniam eligendi rem cumque magnam autem delectus qui.
+                      </p>
+                      <p>
+                        <a href="#">bootdey.com</a>
+                      </p>
                     </div>
-            
-                    <!-- User info -->
-                    <div class="panel panel-default">
-                      <div class="panel-heading">
-                      <h4 class="panel-title">User info</h4>
-                      </div>
-                      <div class="panel-body">
-                          {{#if recordsPrint}}
-                            {{#each recordsPrint}}
-                        <table class="table profile__table">
-                          <tbody>
-                            <tr>
-                              <th><strong>Full Name</strong></th>
-                              <td>{{fullName}}</td>
-                            </tr>
-                            <tr>
-                              <th><strong>Date of Birth</strong></th>
-                              <td>{{dateofBirth}}</td>
-                            </tr>
-                            <tr>
-                              <th><strong>Location</strong></th>
-                              <td>{{location}}</td>
-                            </tr>
-                            <tr>
-                                <th><strong>Nationality</strong></th>
-                                <td>{{nationality}}</td>
-                            </tr>
-                             <tr>
-                                <th><strong>Blood Group</strong></th>
-                                <td>{{bloodGroup}}</td>
-                             </tr>
-                             <tr>
-                                <th><strong>Click on "Edit" to edit the user profile.</strong></th>
-                              <td><a href="/update/patientProfileUpdate/"><button class="btn-edit btn-warning">Edit</button></a></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                        {{/each}}
-                          
-                        {{else}}
-                        <h3>No Record</h3>
-                        {{/if}}
-                      </div>
-                    </div>
-
-                    {{#if isInRole 'super-admin,patient'}}
-                    <!-- Surgery Records -->
-                    <div class="panel panel-default">
-                      <div class="panel-heading">
-                      <h4 class="panel-title">Surgery Records</h4>
-                      </div>
-                      <div class="panel-body">
-                          
-                        <table class="table profile__table">
-                          <tbody>
-                            <tr>
-                              <th>Surgery Number</th>
-                              <th>Date of Surgery</th>
-                              <th>Surgery Description</th>
-                              <th>Edit Record</th>
-                              <th>Delete Record</th>
-                            </tr>
-                              {{#each surgeryRecordsPrint}}
-                            <tr>
-                              <td>{{surgeryNumber}}</td>
-                              <td>{{dateofSurgery}}</td>
-                              <td>{{surgeryDescription}}</td>
-                              <td><button class="btn-edit btn-warning" data-toggle="modal" data-target="#myModalEdit">Edit</button></td>
-                              <td><button class="btn-del btn-danger">Delete</button></td>
-                            </tr>
-                            {{/each}}   
-                          </tbody>
-                        </table>
-                        
-                        
-                        <!-- Modal edit starts -->
-                        <div class="modal fade" id="myModalEdit" role="dialog">
-                            <div class="modal-dialog">
-                            
-                              <!-- Modal content-->
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                  <h4 class="modal-title">Update selected record!</h4>
-                                </div>
-                                <div class="modal-body">
-                                  {{> modalFormEdit}}
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-primary btn-default" data-dismiss="modal">Close</button>
-                                </div>
-                              </div>
+                  </div>
+                </div>
+               <!-- User info -->
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">User info</h4>
+                </div>
+                <div class="panel-body">
+                  {{#if recordsPrint}}
+                    {{#each recordsPrint}}
+                      <table class="table profile__table">
+                        <tbody>
+                          <tr>
+                            <th><strong>Full Name</strong></th>
+                             <td>{{fullName}}</td>
+                          </tr>
+                          <tr>
+                            <th><strong>Date of Birth</strong></th>
+                            <td>{{dateofBirth}}</td>
+                          </tr>
+                          <tr>
+                            <th><strong>Location</strong></th>
+                            <td>{{location}}</td>
+                          </tr>
+                          <tr>
+                            <th><strong>Nationality</strong></th>
+                            <td>{{nationality}}</td>
+                          </tr>
+                          <tr>
+                            <th><strong>Blood Group</strong></th>
+                            <td>{{bloodGroup}}</td>
+                          </tr>
+                          <tr>
+                            <th><strong>Click on "Edit" to edit the user profile.</strong></th>
+                            <td><a href="/update/patientProfileUpdate/"><button class="btn-edit btn-warning">Edit</button></a></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    {{/each}}
+                      
+                    {{else}}
+                      <h3>No Record</h3>
+                  {{/if}}
+                </div>
+              </div>
+                {{#if isInRole 'super-admin,patient'}}
+                 <!-- Surgery Records -->
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">Surgery Records</h4>
+                  </div>
+                  <div class="panel-body">      
+                    <table class="table profile__table">
+                      <tbody>
+                        <tr>
+                          <th>Surgery Number</th>
+                          <th>Date of Surgery</th>
+                          <th>Surgery Description</th>
+                          <th>Edit Record</th>
+                          <th>Add Visit</th>
+                          <th>Delete Record</th>
+                        </tr>
+                        {{#each surgeryRecordsPrint}}
+                        <tr>
+                          <td>{{surgeryNumber}}</td>
+                          <td>{{dateofSurgery}}</td>
+                          <td>{{surgeryDescription}}</td>
+                          <td><button class="btn-edit btn-warning" data-toggle="modal" data-target="#myModalEdit">Edit</button></td>
+                          <td><button class="btn-addVisit btn-info" data-toggle="modal" data-target="#myModalAddVisit">AddVisit</button></td>
+                          <td><button class="btn-del btn-danger">Delete</button></td>
+                        </tr>
+                        {{/each}}   
+                      </tbody>
+                    </table>
+                    <br><br>
+                    <h4>Visit details</h4>
+                    <table class="table profile__table">
+                      <tbody>
+                        <tr>
+                          <th>Surgery Number</th>
+                          <th>Visit number</th>
+                          <th>Visit Date</th>
+                          <th>Visit Description</th>
+                          <th>Edit Record</th>
+                          <th>Delete Record</th>
+                        </tr>
+                        {{#each surgeryVisitRecordsPrint}}
+                        <tr>
+                          <td>{{surgeryNumber}}</td>
+                          <td>{{visitNumber}}</td>
+                          <td>{{dateofVisit}}</td>
+                          <td>{{visitDescription}}</td>
+                          <td><button class="btn-edit btn-warning" data-toggle="modal" data-target="#myModalEdit">Edit</button></td>
+                          <td><button class="btn-delVisit btn-danger">Delete</button></td>
+                        </tr>
+                        {{/each}}   
+                      </tbody>
+                    </table>    
+                     <!-- Edit Modal starts -->
+                    <div class="modal fade" id="myModalEdit" role="dialog">
+                      <div class="modal-dialog">     
+                      <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Update selected record!</h4>
+                            </div>
+                            <div class="modal-body">
+                              {{> modalFormEdit}}
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-primary btn-default" data-dismiss="modal">Close</button>
                             </div>
                           </div>
-                           <!-- Modal ends here -->
-                        <!-- Modal Button -->
-                        <button type="button" class="btn btn-primary btn-info " data-toggle="modal" data-target="#myModal">Add more Surgery Records</button>
-                        <!-- Modal button -->
+                        </div>
                       </div>
-                        
-                        <!-- Modal Starts here -->
-
-                        <!-- Trigger the modal with a button -->
-                        <!-- <button type="button" class="btn btn-primary btn-info " data-toggle="modal" data-target="#myModal">Add more Surgery Records</button> -->
-
-                        <!-- Modal add record  starts here-->
-                        <div class="modal fade" id="myModal" role="dialog">
+                      <!-- Edit Modal ends here -->
+                      <!-- Modal Add Visit starts here -->
+                        <div class="modal fade" id="myModalAddVisit" role="dialog">
                           <div class="modal-dialog">
-                          
-                            <!-- Modalcontent-->
+                          <!-- Modal content-->
                             <div class="modal-content">
                               <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Add Surgery Records</h4>
+                                <h4 class="modal-title">Add Visit Details</h4>
                               </div>
                               <div class="modal-body">
-                                {{> modalForm}}
+                              {{> modalFormAddVisit}}
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-primary btn-default" data-dismiss="modal">Close</button>
@@ -153,138 +159,158 @@
                             </div>
                           </div>
                         </div>
-                         <!-- Modal ends here -->
-                    </div>
-                    {{/if}}
-                    <!-- Latest posts -->
-                    <div class="panel panel-default">
-                      <div class="panel-heading">
-                      <h4 class="panel-title">Latest Treatment</h4>
-                      </div>
-                      <div class="panel-body">
-                        <div class="profile__comments">
-                          <div class="profile-comments__item">
-                            <div class="profile-comments__controls">
-                              <a href="#"><i class="fa fa-share-square-o"></i></a>
-                              <a href="#"><i class="fa fa-edit"></i></a>
-                              <a href="#"><i class="fa fa-trash-o"></i></a>
-                            </div>
-                            <div class="profile-comments__avatar">
-                              <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="...">
-                            </div>
-                            <div class="profile-comments__body">
-                              <h5 class="profile-comments__sender">
-                                Richard Roe <small>2 hours ago</small>
-                              </h5>
-                              <div class="profile-comments__content">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, corporis. Voluptatibus odio perspiciatis non quisquam provident, quasi eaque officia.
-                              </div>
-                            </div>
-                          </div>
-                          <div class="profile-comments__item">
-                            <div class="profile-comments__controls">
-                              <a href="#"><i class="fa fa-share-square-o"></i></a>
-                              <a href="#"><i class="fa fa-edit"></i></a>
-                              <a href="#"><i class="fa fa-trash-o"></i></a>
-                            </div>
-                            <div class="profile-comments__avatar">
-                              <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="...">
-                            </div>
-                            <div class="profile-comments__body">
-                              <h5 class="profile-comments__sender">
-                                Richard Roe <small>5 hours ago</small>
-                              </h5>
-                              <div class="profile-comments__content">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero itaque dolor laboriosam dolores magnam mollitia, voluptatibus inventore accusamus illo.
-                              </div>
-                            </div>
-                          </div>
-                          <div class="profile-comments__item">
-                            <div class="profile-comments__controls">
-                              <a href="#"><i class="fa fa-share-square-o"></i></a>
-                              <a href="#"><i class="fa fa-edit"></i></a>
-                              <a href="#"><i class="fa fa-trash-o"></i></a>
-                            </div>
-                            <div class="profile-comments__avatar">
-                              <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="...">
-                            </div>
-                            <div class="profile-comments__body">
-                              <h5 class="profile-comments__sender">
-                                Richard Roe <small>1 day ago</small>
-                              </h5>
-                              <div class="profile-comments__content">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse, magni aliquam quisquam modi delectus veritatis est ut culpa minus repellendus.
-                              </div>
-                            </div>
-                          </div>
+                        <!-- Modal ends here -->
+                        <!-- Modal Button -->
+                        <button type="button" class="btn btn-primary btn-info " data-toggle="modal" data-target="#myModal">Add more Surgery Records</button>
+                        <!-- Modal button -->
+                  </div>  
+                  <!-- Modal Starts here -->
+                  <!-- Trigger the modal with a button -->
+                  <!-- <button type="button" class="btn btn-primary btn-info " data-toggle="modal" data-target="#myModal">Add more Surgery Records</button> -->
+                  <!-- Modal add record  starts here-->
+                  <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">                      
+                    <!-- Modalcontent-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Add Surgery Records</h4>
+                        </div>
+                        <div class="modal-body">
+                          {{> modalForm}}
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary btn-default" data-dismiss="modal">Close</button>
                         </div>
                       </div>
                     </div>
-            
                   </div>
-                  <div class="col-xs-12 col-sm-3">
-                    
-                    <!-- Contact user -->
-                    <p>
-                      <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Edit Profile or Records 
-                        <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                          <li><a href="/update/patientProfileUpdate">Edit profile</a></li>
-                          <li><a href="#">Edit Surgery record</a></li> 
-                        </ul>
-                      </div>
-                    </p>
-            
-                    <hr class="profile__contact-hr">
-                    
-                    <!-- Contact info -->
-                    <div class="profile__contact-info">
-                      <div class="profile__contact-info-item">
-                        <div class="profile__contact-info-icon">
-                          <i class="fa fa-phone"></i>
+                  <!-- Add Records Modal ends here -->
+                </div>
+                {{/if}}
+                <!-- Latest posts -->
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">Latest Treatment</h4>
+                  </div>
+                  <div class="panel-body">
+                    <div class="profile__comments">
+                      <div class="profile-comments__item">
+                        <div class="profile-comments__controls">
+                          <a href="#"><i class="fa fa-share-square-o"></i></a>
+                          <a href="#"><i class="fa fa-edit"></i></a>
+                          <a href="#"><i class="fa fa-trash-o"></i></a>
                         </div>
-                        <div class="profile__contact-info-body">
-                          <h5 class="profile__contact-info-heading">Work number</h5>
-                          (000)987-65-43
+                        <div class="profile-comments__avatar">
+                          <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="...">
                         </div>
-                      </div>
-                      <div class="profile__contact-info-item">
-                        <div class="profile__contact-info-icon">
-                          <i class="fa fa-phone"></i>
-                        </div>
-                        <div class="profile__contact-info-body">
-                          <h5 class="profile__contact-info-heading">Mobile number</h5>
-                          (000)987-65-43
+                        <div class="profile-comments__body">
+                          <h5 class="profile-comments__sender">
+                          Richard Roe <small>2 hours ago</small>
+                          </h5>
+                          <div class="profile-comments__content">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, corporis. Voluptatibus odio perspiciatis non quisquam provident, quasi eaque officia.
+                          </div>
                         </div>
                       </div>
-                      <div class="profile__contact-info-item">
-                        <div class="profile__contact-info-icon">
-                          <i class="fa fa-envelope-square"></i>
+                      <div class="profile-comments__item">
+                        <div class="profile-comments__controls">
+                          <a href="#"><i class="fa fa-share-square-o"></i></a>
+                          <a href="#"><i class="fa fa-edit"></i></a>
+                          <a href="#"><i class="fa fa-trash-o"></i></a>
                         </div>
-                        <div class="profile__contact-info-body">
-                          <h5 class="profile__contact-info-heading">E-mail address</h5>
-                          <a href="mailto:admin@domain.com">admin@domain.com</a>
+                        <div class="profile-comments__avatar">
+                          <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="...">
+                        </div>
+                        <div class="profile-comments__body">
+                          <h5 class="profile-comments__sender">
+                          Richard Roe <small>5 hours ago</small>
+                          </h5>
+                          <div class="profile-comments__content">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero itaque dolor laboriosam dolores magnam mollitia, voluptatibus inventore accusamus illo.
+                          </div>
                         </div>
                       </div>
-                      <div class="profile__contact-info-item">
-                        <div class="profile__contact-info-icon">
-                          <i class="fa fa-map-marker"></i>
+                      <div class="profile-comments__item">
+                        <div class="profile-comments__controls">
+                          <a href="#"><i class="fa fa-share-square-o"></i></a>
+                          <a href="#"><i class="fa fa-edit"></i></a>
+                          <a href="#"><i class="fa fa-trash-o"></i></a>
                         </div>
-                        <div class="profile__contact-info-body">
-                          <h5 class="profile__contact-info-heading">Work address</h5>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        <div class="profile-comments__avatar">
+                          <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="...">
+                        </div>
+                        <div class="profile-comments__body">
+                          <h5 class="profile-comments__sender">
+                          Richard Roe <small>1 day ago</small>
+                          </h5>
+                        <div class="profile-comments__content">
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse, magni aliquam quisquam modi delectus veritatis est ut culpa minus repellendus.
                         </div>
                       </div>
                     </div>
-            
                   </div>
                 </div>
+              </div>
             </div>
-    {{else}}
+            <div class="col-xs-12 col-sm-3">      
+            <!-- Contact user -->
+              <p>
+                <div class="dropdown">
+                  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Edit Profile or Records 
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                    <li><a href="/update/patientProfileUpdate">Edit profile</a></li>
+                    <li><a href="#">Edit Surgery record</a></li> 
+                    </ul>
+                </div>
+              </p>        
+              <hr class="profile__contact-hr">             
+              <!-- Contact info -->
+              <div class="profile__contact-info">
+                <div class="profile__contact-info-item">
+                  <div class="profile__contact-info-icon">
+                    <i class="fa fa-phone"></i>
+                  </div>
+                  <div class="profile__contact-info-body">
+                    <h5 class="profile__contact-info-heading">Work number</h5>
+                    (000)987-65-43
+                  </div>
+                </div>
+                <div class="profile__contact-info-item">
+                  <div class="profile__contact-info-icon">
+                    <i class="fa fa-phone"></i>
+                  </div>
+                  <div class="profile__contact-info-body">
+                    <h5 class="profile__contact-info-heading">Mobile number</h5>
+                    (000)987-65-43
+                  </div>
+                </div>
+                <div class="profile__contact-info-item">
+                  <div class="profile__contact-info-icon">
+                    <i class="fa fa-envelope-square"></i>
+                  </div>
+                  <div class="profile__contact-info-body">
+                    <h5 class="profile__contact-info-heading">E-mail address</h5>
+                    <a href="mailto:admin@domain.com">admin@domain.com</a>
+                  </div>
+                </div>
+                <div class="profile__contact-info-item">
+                  <div class="profile__contact-info-icon">
+                    <i class="fa fa-map-marker"></i>
+                  </div>
+                  <div class="profile__contact-info-body">
+                    <h5 class="profile__contact-info-heading">Work address</h5>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {{else}}
     <h3>Only Patients or Super Admin are allowed to view this page!</h3>
-
-    {{/if}}
+  {{/if}}
 </template>
 
 <template name="modalForm">
@@ -312,26 +338,38 @@
 </template>
 
 <template name="modalFormEdit">
+  <form class="update-patientSurgeryDetails">
+    <div class="form-group">
+      <label for="surgeryNumber">Surgery Number</label>
+      <input type="text" class="form-control" id="surgeryNumber" value="{{editDataHelper.surgeryNumber}}">
+    </div>
+    <div class="form-group">
+      <label for="dateofSurgery">Date of Surgery</label>
+      <input type="date" class="form-control" id="dateofSurgery" value="{{editDataHelper.dateofSurgery}}">
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input type="text" class="form-control" id="description" value="{{editDataHelper.surgeryDescription}}">
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+  </form>
+</template>
 
-    <form class="update-patientSurgeryDetails">
-        <div class="form-group">
-          <label for="surgeryNumber">Surgery Number</label>
-          <input type="text" class="form-control" id="surgeryNumber" placeholder="Surgery Number">
-        </div>
-    
-        <div class="form-group">
-          <label for="dateofSurgery">Date of Surgery</label>
-          <input type="date" class="form-control" id="dateofSurgery" placeholder="Date of Surgery">
-        </div>
-        
-        <div class="form-group">
-            <label for="description">Description</label>
-            <input type="text" class="form-control" id="description" placeholder="Description">
-        </div>   
-    
-        <button type="submit" class="btn btn-primary" >Submit</button>
-    
-      </form>
-
+<template name="modalFormAddVisit">
+  <form class="add-patientVisitDetails">
+    <div class="form-group">
+      <label for="visitNumber">Visit Number</label>
+      <input type="text" class="form-control" id="visitNumber" placeholder="Visit Number">
+    </div>
+    <div class="form-group">
+      <label for="dateofVisit">Date of Visit</label>
+      <input type="date" class="form-control" id="dateofVisit" placeholder="Date of Visit">
+    </div>
+    <div class="form-group">
+      <label for="visitDescription">Visit Description</label>
+      <input type="text" class="form-control" id="visitDescription" placeholder="visitDescription">
+    </div>
+    <button  class="btn btn-primary">Submit Visit Details</button>
+  </form>
 </template>
 
