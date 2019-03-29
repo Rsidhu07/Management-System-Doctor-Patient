@@ -61,7 +61,7 @@ patientRoutesView.route('/patientProfileView', {
 FlowRouter.notFound =  { 
     action: function() {
 
-        BlazeLayout.render('not-found');
+        BlazeLayout.render('notFound');
 
     }
 };

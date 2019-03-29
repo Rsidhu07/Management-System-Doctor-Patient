@@ -79,11 +79,54 @@ Meteor.methods({
             $set:{ surgeryNumber      : surgeryData.surgeryNumber,
                     dateofSurgery     : surgeryData.dateofSurgery,
                     surgeryDescription: surgeryData.surgeryDescription
-                },
+                }
           });
     },
 
+    'updateSelectedPatientVisitDetails'(updateVisitData){
+
+        if(!Meteor.userId()){
+    
+            console.log("Error called");
+    
+            throw new Meteor.Error('not-authorized');
+        }
+
+        PatientVisitRecords.update(updateVisitData.tempSelectedRecordID, {
+
+            $set:{
+                visitNumber          : updateVisitData.visitNumber,
+                dateofVisit          : updateVisitData.dateofVisit,
+                visitDescription     : updateVisitData.visitDescription
+            }
+
+        });
+
+        
+    },
+
+    'deleteSelectedVisitRecord': function(data){
+
+        if(!Meteor.userId()){
+    
+            console.log("Error called");
+    
+            throw new Meteor.Error('not-authorized');
+        }
+
+        PatientVisitRecords.remove(data._id);
+
+
+    },
+
     'deleteSelectedSurgeryRecord': function(data){
+
+        if(!Meteor.userId()){
+    
+            console.log("Error called");
+    
+            throw new Meteor.Error('not-authorized');
+        }
 
         PatientSurgeryRecords.remove(data._id);
 

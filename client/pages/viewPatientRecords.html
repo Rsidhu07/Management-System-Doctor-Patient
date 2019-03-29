@@ -21,7 +21,7 @@
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non nostrum odio cum repellat veniam eligendi rem cumque magnam autem delectus qui.
                       </p>
                       <p>
-                        <a href="#">bootdey.com</a>
+                        <a href="#">deligence.com</a>
                       </p>
                     </div>
                   </div>
@@ -99,6 +99,7 @@
                       </tbody>
                     </table>
                     <br><br>
+                    
                     <h4>Visit details</h4>
                     <table class="table profile__table">
                       <tbody>
@@ -116,13 +117,14 @@
                           <td>{{visitNumber}}</td>
                           <td>{{dateofVisit}}</td>
                           <td>{{visitDescription}}</td>
-                          <td><button class="btn-edit btn-warning" data-toggle="modal" data-target="#myModalEdit">Edit</button></td>
+                          <td><button class="btn-edit editVisitBtn btn-warning" data-toggle="modal" data-target="#myModalEditVisit">Edit</button></td>
                           <td><button class="btn-delVisit btn-danger">Delete</button></td>
                         </tr>
-                        {{/each}}   
+                        {{/each}}  
+                       
                       </tbody>
-                    </table>    
-                     <!-- Edit Modal starts -->
+                    </table> 
+                     <!-- Edit Modal for Surgery details starts -->
                     <div class="modal fade" id="myModalEdit" role="dialog">
                       <div class="modal-dialog">     
                       <!-- Modal content-->
@@ -140,7 +142,24 @@
                           </div>
                         </div>
                       </div>
-                      <!-- Edit Modal ends here -->
+                      <!-- Edit Modal for Surgery ends here -->
+                      <div class="modal fade" id="myModalEditVisit" role="dialog">
+                        <div class="modal-dialog">     
+                        <!-- Modal content-->
+                          <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Update selected record!</h4>
+                              </div>
+                              <div class="modal-body">
+                                {{> modalFormEditVisit}}
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-primary btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
                       <!-- Modal Add Visit starts here -->
                         <div class="modal fade" id="myModalAddVisit" role="dialog">
                           <div class="modal-dialog">
@@ -371,5 +390,25 @@
     </div>
     <button  class="btn btn-primary">Submit Visit Details</button>
   </form>
+</template>
+
+<template name="modalFormEditVisit">
+
+  <form class="update-patientVisitDetails">
+    <div class="form-group">
+      <label for="visitNumber">Visit Number</label>
+      <input type="text" class="form-control" id="visitNumber" value="{{editDataVisitHelper.visitNumber}}" placeholder="Visit Number">
+    </div>
+    <div class="form-group">
+      <label for="dateofVisit">Date of Visit</label>
+      <input type="date" class="form-control" id="dateofVisit" value="{{editDataVisitHelper.dateofVisit}}" placeholder="Date of Visit">
+    </div>
+    <div class="form-group">
+      <label for="visitDescription">Visit Description</label>
+      <input type="text" class="form-control" id="visitDescription" value="{{editDataVisitHelper.visitDescription}}" placeholder="visitDescription">
+    </div>
+    <button  class="btn btn-primary">Update Visit Details</button>
+  </form>
+
 </template>
 

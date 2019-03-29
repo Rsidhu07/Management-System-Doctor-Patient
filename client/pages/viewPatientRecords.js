@@ -24,8 +24,7 @@ Template.viewPatientRecords.helpers({
 
         return PatientVisitRecords.find({});
 
-    }
-   
+    },  
 });
 
 Template.viewPatientRecords.onCreated(function(){
@@ -94,10 +93,7 @@ Template.modalFormEdit.events({
         tempSelectedRecordID
   
       }; 
-      Meteor.call('updateSelectedPatientSurgeryDetails', surgeryData);
-  
-      // window.alert("Patient Record added Successfully");
-  
+      Meteor.call('updateSelectedPatientSurgeryDetails', surgeryData); 
     }
   
   });
@@ -125,6 +121,8 @@ Template.modalFormEdit.events({
       };
 
       Meteor.call('addPatientVisit', visitData);
+
+      window.alert("Visit Record has been updated successfully");
       
     }
 
@@ -138,6 +136,48 @@ Template.modalFormEdit.events({
     }
 
   });
+
+  Template.modalFormEditVisit.helpers({
+
+    editDataVisitHelper(){
+
+        return Session.get('tempSelectedRecord');
+    }
+
+  });
+
+Template.modalFormEditVisit.events({
+
+  'submit .update-patientVisitDetails': function(event){
+
+    event.preventDefault();
+
+    let tempSelectedRecordID = Session.get('tempSelectedRecordID');
+
+    const target           = event.target;
+    const visitNumber      = target.visitNumber.value;
+    const dateofVisit      = target.dateofVisit.value;
+    const visitDescription = target.visitDescription.value;
+
+
+    const updateVisitData = {
+
+      visitNumber,
+      dateofVisit,
+      visitDescription,
+      tempSelectedRecordID
+
+    };
+
+    Meteor.call('updateSelectedPatientVisitDetails', updateVisitData);
+
+    window.alert("Visit Record has been updated successfully");
+
+  }
+
+ 
+
+});
 
 Template.viewPatientRecords.events({
 
@@ -153,6 +193,12 @@ Template.viewPatientRecords.events({
    Meteor.call('deleteSelectedSurgeryRecord', this);
 
   },
+
+  'click .btn-delVisit': function(event){
+
+    Meteor.call('deleteSelectedVisitRecord', this);
+ 
+   },
 
   'click .btn-addVisit': function(){
 
