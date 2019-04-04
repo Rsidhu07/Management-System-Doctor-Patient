@@ -5,6 +5,8 @@ import { PatientSurgeryRecords, PatientVisitRecords } from '../imports/collectio
 Meteor.publish('allUsers', function(){
     if(Roles.userIsInRole(this.userId, 'super-admin')) {    
     return Meteor.users.find({});
+   } else if(Roles.userIsInRole(this.userId, 'patient')){
+    return Meteor.users.find({});
    }
 });
 

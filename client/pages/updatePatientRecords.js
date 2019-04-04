@@ -4,7 +4,12 @@ import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
 
-
+Template.updatePatientRecords.helpers({
+  currentUserName(){
+        
+   return Meteor.user().profile.name;
+  }
+});
 
 Template.updatePatientRecords.events({
 
@@ -96,34 +101,11 @@ Template.updatePatientRecords.events({
     }
 });
 
-// Template.updatePatientRecords.helpers({
-//      fileRef(){
-       
-//       const cursor = Images.find({});
-//       let image = cursor.get();
-//       console.log("Cursor get is ", image);
-
-//      image.forEach(function(){
-
-//       return image._id + "." + image.extension;
-
-//      });
-//       //  let image =  Images.find({}).fetch();
-//       //  console.log("images length is",image.length);
-       
-//       //  for(let i=0 ; i < image.length ; i++){
-            
-//       //       return image[i]._id + "." + image[i].extension;
-       
-//       // }
-       
-//     }
-// });
-
   Template.updatePatientRecords.onCreated(function(){
     Meteor.subscribe('files.images.all');
     Meteor.subscribe('allPatients');
     Meteor.subscribe('allPatientsSurgeryRecord');
+
   });
 
   Template.updatePatientRecords.onCreated(function () {

@@ -3,7 +3,7 @@
    <h1>This is View Page for Profile...</h1>
       <div class="container">
           <div class="row">
-              <div class="col-xs-12 col-sm-9">
+              <div class="col-xs-12 col-sm-11">
                <!-- User profile -->
                 <div class="panel panel-default">
                   <div class="panel-heading">
@@ -85,6 +85,7 @@
                           <th>Edit Record</th>
                           <th>Add Visit</th>
                           <th>Delete Record</th>
+                          <th>By Doctor</th>
                         </tr>
                         {{#each surgeryRecordsPrint}}
                         <tr>
@@ -94,10 +95,12 @@
                           <td><button class="btn-edit btn-warning" data-toggle="modal" data-target="#myModalEdit">Edit</button></td>
                           <td><button class="btn-addVisit btn-info" data-toggle="modal" data-target="#myModalAddVisit">AddVisit</button></td>
                           <td><button class="btn-del btn-danger">Delete</button></td>
+                          <td>{{doctorId}}</td>
                         </tr>
                         {{/each}}   
                       </tbody>
                     </table>
+                    <button type="button" class="btn btn-primary btn-info " data-toggle="modal" data-target="#myModal">Add more Surgery Records</button>
                     <br><br>
                     
                     <h4>Visit details</h4>
@@ -180,7 +183,6 @@
                         </div>
                         <!-- Modal ends here -->
                         <!-- Modal Button -->
-                        <button type="button" class="btn btn-primary btn-info " data-toggle="modal" data-target="#myModal">Add more Surgery Records</button>
                         <!-- Modal button -->
                   </div>  
                   <!-- Modal Starts here -->
@@ -272,59 +274,6 @@
                 </div>
               </div>
             </div>
-            <div class="col-xs-12 col-sm-3">      
-            <!-- Contact user -->
-              <p>
-                <div class="dropdown">
-                  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Edit Profile or Records 
-                    <span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                    <li><a href="/update/patientProfileUpdate">Edit profile</a></li>
-                    <li><a href="#">Edit Surgery record</a></li> 
-                    </ul>
-                </div>
-              </p>        
-              <hr class="profile__contact-hr">             
-              <!-- Contact info -->
-              <div class="profile__contact-info">
-                <div class="profile__contact-info-item">
-                  <div class="profile__contact-info-icon">
-                    <i class="fa fa-phone"></i>
-                  </div>
-                  <div class="profile__contact-info-body">
-                    <h5 class="profile__contact-info-heading">Work number</h5>
-                    (000)987-65-43
-                  </div>
-                </div>
-                <div class="profile__contact-info-item">
-                  <div class="profile__contact-info-icon">
-                    <i class="fa fa-phone"></i>
-                  </div>
-                  <div class="profile__contact-info-body">
-                    <h5 class="profile__contact-info-heading">Mobile number</h5>
-                    (000)987-65-43
-                  </div>
-                </div>
-                <div class="profile__contact-info-item">
-                  <div class="profile__contact-info-icon">
-                    <i class="fa fa-envelope-square"></i>
-                  </div>
-                  <div class="profile__contact-info-body">
-                    <h5 class="profile__contact-info-heading">E-mail address</h5>
-                    <a href="mailto:admin@domain.com">admin@domain.com</a>
-                  </div>
-                </div>
-                <div class="profile__contact-info-item">
-                  <div class="profile__contact-info-icon">
-                    <i class="fa fa-map-marker"></i>
-                  </div>
-                  <div class="profile__contact-info-body">
-                    <h5 class="profile__contact-info-heading">Work address</h5>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       {{else}}
@@ -349,7 +298,14 @@
         <label for="description">Description</label>
         <input type="text" class="form-control" id="description" placeholder="Description">
     </div>   
-
+    <div class="form-group">
+      <strong>Please Select Doctor : </strong>
+         <select id="selectedID" name="doctors"> 
+        {{#each findAllRegisteredDoctors}}
+        <option id = "selectedID" value={{_id}}>{{profile.name}}</option>
+        {{/each}}
+      </select>
+  </div> 
     <button type="submit" class="btn btn-primary" >Submit</button>
 
   </form>
@@ -370,6 +326,7 @@
       <label for="description">Description</label>
       <input type="text" class="form-control" id="description" value="{{editDataHelper.surgeryDescription}}">
     </div>
+   
     <button type="submit" class="btn btn-primary">Update</button>
   </form>
 </template>

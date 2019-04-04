@@ -53,12 +53,14 @@ Meteor.methods({
             console.log("Error called");
     
             throw new Meteor.Error('not-authorized');
-        }
+        }     
+
 
         PatientSurgeryRecords.insert({
             'surgeryNumber'      : surgeryData.surgeryNumber,
             'dateofSurgery'      : surgeryData.dateofSurgery,
             'surgeryDescription' : surgeryData.surgeryDescription,
+            'doctorId'           : surgeryData.doctorId,
                 createdAt        : new Date(),
                 owner            : Meteor.userId(),
                 username         : Meteor.user().profile.name,

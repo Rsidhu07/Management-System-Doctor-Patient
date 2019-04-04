@@ -16,7 +16,6 @@ Template.viewPatientRecords.helpers({
     },
 
     surgeryRecordsPrint(){
-
         return PatientSurgeryRecords.find({username: Meteor.user().profile.name});
     },
 
@@ -24,7 +23,7 @@ Template.viewPatientRecords.helpers({
 
         return PatientVisitRecords.find({});
 
-    },  
+    }    
 });
 
 Template.viewPatientRecords.onCreated(function(){
@@ -32,6 +31,9 @@ Template.viewPatientRecords.onCreated(function(){
     Meteor.subscribe('allPatients');
     Meteor.subscribe('allPatientsSurgeryRecord');
     Meteor.subscribe('allPatientsVisitRecord');
+    Meteor.subscribe('allUsers');
+      
+  
   });
 
 
@@ -45,6 +47,14 @@ Template.viewPatientRecords.onCreated(function(){
    }
 });
 
+Template.modalForm.helpers({
+ 
+  findAllRegisteredDoctors(){
+    return Meteor.users.find({roles: "doctor"});
+}
+
+});
+
 Template.modalForm.events({
 
 'submit .add-patientSurgeryDetails': function(event){
@@ -55,15 +65,18 @@ Template.modalForm.events({
     const surgeryNumber      = target.surgeryNumber.value;
     const dateofSurgery      = target.dateofSurgery.value;
     const surgeryDescription = target.description.value;
+    const doctorId           = target.selectedID.value;
+    
 
     const surgeryData = {
       surgeryNumber,
       dateofSurgery,
-      surgeryDescription
-
+      surgeryDescription,
+      doctorId
     };
 
     
+    console.log(Meteor.users.find({_id: doctorId}).fetch());
 
     Meteor.call('updatePatientSurgeryDetails', surgeryData);
 
@@ -110,6 +123,7 @@ Template.modalFormEdit.events({
       const dateofVisit      = target.dateofVisit.value;
       const visitDescription = target.visitDescription.value;
       const surgeryNumber    = Session.get('tempSelectedRecordSurgeryNumber');
+      
 
       const visitData = {
 
