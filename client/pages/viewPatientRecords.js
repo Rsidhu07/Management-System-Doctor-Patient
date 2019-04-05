@@ -66,13 +66,15 @@ Template.modalForm.events({
     const dateofSurgery      = target.dateofSurgery.value;
     const surgeryDescription = target.description.value;
     const doctorId           = target.selectedID.value;
-    
+    const doctorProfile      = Meteor.users.find({_id:doctorId}).fetch();
+    const doctorName         = doctorProfile[0].profile.name;
 
     const surgeryData = {
       surgeryNumber,
       dateofSurgery,
       surgeryDescription,
-      doctorId
+      doctorId,
+      doctorName
     };
 
     
@@ -123,6 +125,7 @@ Template.modalFormEdit.events({
       const dateofVisit      = target.dateofVisit.value;
       const visitDescription = target.visitDescription.value;
       const surgeryNumber    = Session.get('tempSelectedRecordSurgeryNumber');
+      const surgeryId        = Session.get('tempSelectedRecordSurgeryId');
       
 
       const visitData = {
@@ -130,7 +133,8 @@ Template.modalFormEdit.events({
         visitNumber,
         dateofVisit,
         visitDescription,
-        surgeryNumber
+        surgeryNumber,
+        surgeryId
 
       };
 
@@ -204,12 +208,34 @@ Template.viewPatientRecords.events({
   },
   'click .btn-del': function(event){
 
-   Meteor.call('deleteSelectedSurgeryRecord', this);
+    const data = this;
+
+    bootbox.confirm({
+      message: "This will lead to deletion of the selected record and will delete all the associated Visit Records, Do you still want to delete the Record?",
+      buttons: {
+          confirm: {
+              label: 'Yes',
+              className: 'btn-primary'
+          },
+          cancel: {
+              label: 'No',
+              className: 'btn-primary'
+          }
+      },
+      callback: function (result) {
+          
+        if(result){
+            Meteor.call('deleteSelectedSurgeryRecord', data);
+          } else { console.log("Operation cancelled!")}
+      }
+  });
+   
 
   },
 
   'click .btn-delVisit': function(event){
 
+   
     Meteor.call('deleteSelectedVisitRecord', this);
  
    },
@@ -217,6 +243,7 @@ Template.viewPatientRecords.events({
   'click .btn-addVisit': function(){
 
     Session.set('tempSelectedRecordSurgeryNumber', this.surgeryNumber);
+    Session.set('tempSelectedRecordSurgeryId', this._id);
 
   }  
 

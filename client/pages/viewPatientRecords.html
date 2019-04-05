@@ -70,7 +70,7 @@
                 </div>
               </div>
                 {{#if isInRole 'super-admin,patient'}}
-                 <!-- Surgery Records -->
+                 <!--  View Surgery Records -->
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <h4 class="panel-title">Surgery Records</h4>
@@ -95,7 +95,7 @@
                           <td><button class="btn-edit btn-warning" data-toggle="modal" data-target="#myModalEdit">Edit</button></td>
                           <td><button class="btn-addVisit btn-info" data-toggle="modal" data-target="#myModalAddVisit">AddVisit</button></td>
                           <td><button class="btn-del btn-danger">Delete</button></td>
-                          <td>{{doctorId}}</td>
+                          <td>{{doctorName}}</td>
                         </tr>
                         {{/each}}   
                       </tbody>
@@ -281,19 +281,17 @@
   {{/if}}
 </template>
 
-<template name="modalForm">
 
+<template name="modalForm">
   <form class="add-patientSurgeryDetails">
     <div class="form-group">
       <label for="surgeryNumber">Surgery Number</label>
       <input type="text" class="form-control" id="surgeryNumber" placeholder="Surgery Number">
     </div>
-
     <div class="form-group">
       <label for="dateofSurgery">Date of Surgery</label>
       <input type="date" class="form-control" id="dateofSurgery" placeholder="Date of Surgery">
     </div>
-    
     <div class="form-group">
         <label for="description">Description</label>
         <input type="text" class="form-control" id="description" placeholder="Description">
@@ -307,10 +305,9 @@
       </select>
   </div> 
     <button type="submit" class="btn btn-primary" >Submit</button>
-
   </form>
-
 </template>
+
 
 <template name="modalFormEdit">
   <form class="update-patientSurgeryDetails">
@@ -331,6 +328,7 @@
   </form>
 </template>
 
+
 <template name="modalFormAddVisit">
   <form class="add-patientVisitDetails">
     <div class="form-group">
@@ -349,8 +347,8 @@
   </form>
 </template>
 
-<template name="modalFormEditVisit">
 
+<template name="modalFormEditVisit">
   <form class="update-patientVisitDetails">
     <div class="form-group">
       <label for="visitNumber">Visit Number</label>
@@ -366,6 +364,5 @@
     </div>
     <button  class="btn btn-primary">Update Visit Details</button>
   </form>
-
 </template>
 

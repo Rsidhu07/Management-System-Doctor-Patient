@@ -61,6 +61,7 @@ Meteor.methods({
             'dateofSurgery'      : surgeryData.dateofSurgery,
             'surgeryDescription' : surgeryData.surgeryDescription,
             'doctorId'           : surgeryData.doctorId,
+            'doctorName'         : surgeryData.doctorName,
                 createdAt        : new Date(),
                 owner            : Meteor.userId(),
                 username         : Meteor.user().profile.name,
@@ -76,6 +77,12 @@ Meteor.methods({
     
             throw new Meteor.Error('not-authorized');
         }
+
+        PatientVisitRecords.update({surgeryId: surgeryData.tempSelectedRecordID}, {
+            $set:{
+                surgeryNumber : surgeryData.surgeryNumber,
+                }
+        }, { multi: true });
 
         PatientSurgeryRecords.update( surgeryData.tempSelectedRecordID,  {
             $set:{ surgeryNumber      : surgeryData.surgeryNumber,
@@ -130,13 +137,13 @@ Meteor.methods({
             throw new Meteor.Error('not-authorized');
         }
 
+        PatientVisitRecords.remove({surgeryId: data._id});
         PatientSurgeryRecords.remove(data._id);
-
     },
 
     'addPatientVisit': function(visitData){
 
-        console.log('Method for visit details called');
+        
 
         if(!Meteor.userId()){
     
@@ -145,16 +152,21 @@ Meteor.methods({
             throw new Meteor.Error('not-authorized');
         }
 
-        return PatientVisitRecords.insert({
+        const addedVisitRecordId = PatientVisitRecords.insert({
 
             'visitNumber'     : visitData.visitNumber,
             'dateofVisit'     : visitData.dateofVisit,
             'visitDescription': visitData.visitDescription,
             'surgeryNumber'   : visitData.surgeryNumber,
+            'surgeryId'       : visitData.surgeryId,
              createdAt        : new Date(),
              owner            : Meteor.userId(),
              username         : Meteor.user().profile.name,
 
         });
+
+        PatientSurgeryRecords.update(visitData.surgeryId, {
+            $set: {visitId : addedVisitRecordId}
+        })
     }
 });
