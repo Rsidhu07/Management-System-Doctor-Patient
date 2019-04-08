@@ -182,12 +182,8 @@
                           </div>
                         </div>
                         <!-- Modal ends here -->
-                        <!-- Modal Button -->
-                        <!-- Modal button -->
-                  </div>  
+                      </div>  
                   <!-- Modal Starts here -->
-                  <!-- Trigger the modal with a button -->
-                  <!-- <button type="button" class="btn btn-primary btn-info " data-toggle="modal" data-target="#myModal">Add more Surgery Records</button> -->
                   <!-- Modal add record  starts here-->
                   <div class="modal fade" id="myModal" role="dialog">
                     <div class="modal-dialog">                      
@@ -209,6 +205,21 @@
                   <!-- Add Records Modal ends here -->
                 </div>
                 {{/if}}
+
+                {{#if isInRole 'doctor'}}
+                <!-- Doctor View of records -->
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">Surgery Records of your Patients( If Any!)...</h4>
+                  </div>
+                    <div class="panel-body"> 
+                      {{> viewTableForDocView }}
+                      {{> viewVisitTableForDocView}}
+                    </div>
+                </div>    
+               <!-- *************************** -->
+               {{/if}}
+
                 <!-- Latest posts -->
                 <div class="panel panel-default">
                   <div class="panel-heading">
@@ -366,3 +377,54 @@
   </form>
 </template>
 
+<template name="viewTableForDocView">
+
+  <table class="table profile__table">
+    <tbody>
+      <tr>
+        <th>Surgery Number</th>
+        <th>Date of Surgery</th>
+        <th>Surgery Description</th> 
+        <th>By Doctor</th>
+        <th>By Patient</th>
+      </tr>
+      {{#each viewTableForDocViewPrint}}
+      <tr>
+        <td>{{surgeryNumber}}</td>
+        <td>{{dateofSurgery}}</td>
+        <td>{{surgeryDescription}}</td>
+        <td>{{doctorName}}</td>
+        <td>{{username}}</td>
+      </tr>
+      {{/each}}   
+    </tbody>
+  </table>
+
+</template>
+
+<template name="viewVisitTableForDocView">
+  <br><br>
+                    
+  <h4>Visit details of your Patients( If Any!)...</h4>
+  <table class="table profile__table">
+    <tbody>
+      <tr>
+        <th>Surgery Number</th>
+        <th>Visit number</th>
+        <th>Visit Date</th>
+        <th>Visit Description</th>
+        <th>By Patient</th>
+      </tr>
+      {{#each viewVisitTableForDocViewPrint}}
+      <tr>
+        <td>{{surgeryNumber}}</td>
+        <td>{{visitNumber}}</td>
+        <td>{{dateofVisit}}</td>
+        <td>{{visitDescription}}</td>
+        <td>{{username}}</td>
+      </tr>
+      {{/each}}  
+     
+    </tbody>
+  </table>
+</template>

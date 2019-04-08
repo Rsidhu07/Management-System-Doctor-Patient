@@ -1,12 +1,13 @@
+import Images from '../../imports/imagesCollection.js';
 import PatientDocRecords, { PatientVisitRecords } from '../../imports/collections';
 import { PatientSurgeryRecords } from '../../imports/collections';
-import Images from '../../imports/imagesCollection.js';
+
 
 Template.viewPatientRecords.helpers({
 
     recordsPrint(){
 
-        return PatientDocRecords.find({username: Meteor.user().profile.name});
+        return PatientDocRecords.find({owner: Meteor.userId()});
     },
 
     currentUserRole(){
@@ -16,14 +17,50 @@ Template.viewPatientRecords.helpers({
     },
 
     surgeryRecordsPrint(){
-        return PatientSurgeryRecords.find({username: Meteor.user().profile.name});
+
+        return PatientSurgeryRecords.find( { $or:[ {owner: Meteor.userId()}, {doctorId: Meteor.userId()} ] } );
     },
 
     surgeryVisitRecordsPrint(){
 
-        return PatientVisitRecords.find({});
+        return PatientVisitRecords.find({ $or:[ {owner: Meteor.userId()}, {doctorId: Meteor.userId()} ] });
 
     }    
+});
+
+Template.viewTableForDocView.helpers({
+
+  viewTableForDocViewPrint(){
+    console.log("***********************", (PatientSurgeryRecords.find( { doctorId: Meteor.userId() } ).count()));
+    if(PatientSurgeryRecords.find( { doctorId: Meteor.userId() } ).count()){
+    const patID = PatientSurgeryRecords.find( { doctorId: Meteor.userId() } ).fetch();
+    console.log("*****Inside Table VIEW FOR  DOC VIEW", patID);
+    const patientID = [];
+    patID.forEach(element => {
+      patientID.push(element.owner);
+    });
+    console.log("*************VIEW TABLE FOR DOC VIEW**********************", PatientSurgeryRecords.find( { doctorId: Meteor.userId() } ).fetch());
+    console.log("*****PaTIENT ID IS********", patientID);
+    Session.set('tempPatientOwnerID', patientID);
+    
+
+    return PatientSurgeryRecords.find( { doctorId: Meteor.userId() } ).fetch() ? PatientSurgeryRecords.find({owner: { $in: patientID }}): "No data Found" ;
+    }
+  }
+});
+
+Template.viewVisitTableForDocView.helpers({
+
+  viewVisitTableForDocViewPrint(){
+
+    console.log("***********************", (PatientSurgeryRecords.find( { doctorId: Meteor.userId() } ).count()));
+    if(PatientSurgeryRecords.find( { doctorId: Meteor.userId() } ).count()){
+     const patientID = Session.get('tempPatientOwnerID');
+
+    return PatientVisitRecords.find({owner: { $in: patientID }}) ;
+    }
+  }
+
 });
 
 Template.viewPatientRecords.onCreated(function(){
@@ -40,9 +77,8 @@ Template.viewPatientRecords.onCreated(function(){
   Template.viewPatientRecords.helpers({
     fileReference(){ 
       let image =  Images.findOne({userId: Meteor.userId()});
-      console.log("image length is", image.currentFile);
-      
-      return image.currentFile._id + "." + image.currentFile.extension;
+
+      if(image && image.currentFile) return image.currentFile._id + "." + image.currentFile.extension;
       
    }
 });
