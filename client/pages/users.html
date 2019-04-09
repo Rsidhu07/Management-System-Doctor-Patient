@@ -3,17 +3,16 @@
             <h1 class="page-title">Users</h1>
             <table class= "{{editMode}}">
                 <tr>
-                    <th>Id (Click on ID to make/remove admin)</th>
+                    <th>User Name (Click on name to toggle admin)</th>
                     <th>Email</th>
-                    <th>User Name</th>
                     <th>Created At</th>
                     <th>Roles</th>
+                    <th>Delete User</th>
                 </tr>
              {{#each users}} 
             <tr>
-                <td class="user_id">{{_id}}</td>
-                <td>{{userEmail}}</td>
-                <td>{{profile.name}}</td>
+                <td class="user_id">{{profile.name}}</td>
+                <td>{{userEmail}}</td> 
                 <td>{{dateFormat}}</td>
                 <td>{{isAdmin}}
                     {{#if currentEdit}}
@@ -28,6 +27,7 @@
                     </div>
                     {{/if}}
                 </td>
+                <td><button class="btn-delUser btn-danger">Delete this User</button></td>
             </tr>
                 {{/each}}  
             </table>

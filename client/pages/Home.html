@@ -3,32 +3,21 @@
         <h2>Management System</h2>
         <h3>By Deligence Technologies</h3>
 
-        {{#if isInRole 'patient'}}
+        {{#if isInRole 'patient,super-admin,doctor'}}
             <div class="btn-group">
-                <a href="/update/patientProfileUpdate" class="btn-text">Add Record and update your profile</a>
-                <a href="/view/patientProfileView" class="btn-text">View Record and your Profile</a>
+                <a href="/update/userProfileUpdate" class="btn-text">Add Record or update your profile</a>
+                <a href="/view/userProfileView" class="btn-text">View Surgery Records and your Profile</a>
             </div>
-
-            {{else}}
-                {{#if isInRole 'super-admin'}}
-
-                    <div class="btn-group">
-                            <a href="/update/patientProfileUpdate" class="btn-text">Add Record and update to Patient profile</a>
-                            <a href="/view/patientProfileView" class="btn-text">View Record and Patient Profile</a>
-                    </div>
-                        <br><br>
-                        <div>
-                            <a href="/update/doctorProfileUpdate" class="btn-text">Add Record and update Doctor profile</a>
-                            <a href="/view/doctorProfileView" class="btn-text">View Doctor Profile</a>
-                        </div>
-                {{else}}
-                    {{#if isInRole 'doctor'}}
-                        <a href="/update/patientProfileUpdate" class="btn-text">Add Record and update your profile</a>
-                        <a href="/view/patientProfileView" class="btn-text">View Record and your Profile</a>
-                        {{else}}
-                             <a href="/" class="btn-text btn-click-login">Please Sign in to continue..</a>
-                    {{/if}}
+            {{#if isInRole 'super-admin'}}
+                <div class="btn-group">
+                    <br>  
+                    <a href="/admin/users" class="btn-text">Users Management</a>
+                </div>
                 {{/if}}
+            {{else}}
+                 <a href="/" class="btn-text btn-click-login">Please Sign in to continue..</a>                
         {{/if}}
+
+        
     </div>
 </template>

@@ -35,9 +35,9 @@ let patientRoutesUpdate = FlowRouter.group({
     name   : 'update'
 });
 
-patientRoutesUpdate.route('/patientProfileUpdate', { 
+patientRoutesUpdate.route('/userProfileUpdate', { 
 
-    name : 'patientsUpdate',
+    name : 'usersUpdate',
     action(){
         BlazeLayout.render("AppLayout", {main: "updatePatientRecords"});
     }
@@ -48,9 +48,9 @@ let patientRoutesView = FlowRouter.group({
     name   : 'view' 
 });
 
-patientRoutesView.route('/patientProfileView', { 
+patientRoutesView.route('/userProfileView', { 
 
-    name : 'patientsView',
+    name : 'usersView',
     action(){
         BlazeLayout.render("AppLayout", {main: "viewPatientRecords"});
     }
@@ -82,30 +82,30 @@ FlowRouter.route('/termsofuse', {
     }
 });
 
-//Group Routes for Doctor
+// //Group Routes for Doctor
 
-let doctorRoutesUpdate = FlowRouter.group({
-    prefix : '/update',
-    name   : 'update'
-});
+// let doctorRoutesUpdate = FlowRouter.group({
+//     prefix : '/update',
+//     name   : 'update'
+// });
 
-doctorRoutesUpdate.route('/doctorProfileUpdate', { 
+// doctorRoutesUpdate.route('/doctorProfileUpdate', { 
 
-    name : 'doctorsUpdate',
-    action(){
-        BlazeLayout.render("AppLayout", {main: "updateDoctorRecords"});
-    }
-})
+//     name : 'doctorsUpdate',
+//     action(){
+//         BlazeLayout.render("AppLayout", {main: "updateDoctorRecords"});
+//     }
+// })
 
-let doctorRoutesView = FlowRouter.group({
-    prefix : '/view',
-    name   : 'view' 
-});
+// let doctorRoutesView = FlowRouter.group({
+//     prefix : '/view',
+//     name   : 'view' 
+// });
 
-doctorRoutesView.route('/doctorProfileView', { 
+// doctorRoutesView.route('/doctorProfileView', { 
 
-    name : 'doctorsView',
-    action(){
-        BlazeLayout.render("AppLayout", {main: "viewDoctorRecords"});
-    }
-})
+//     name : 'doctorsView',
+//     action(){
+//         BlazeLayout.render("AppLayout", {main: "viewDoctorRecords"});
+//     }
+// })

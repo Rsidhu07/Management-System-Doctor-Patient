@@ -25,8 +25,10 @@ Template.Users.helpers({
         return Session.get('currentUser')? 'edit-mode': '';
     },
     currentEdit: function(){
+        if(Session.get('currentUser')){
         let user= Session.get('currentUser');
         return user._id === this._id;
+        }
     }
 });
 
@@ -42,6 +44,34 @@ Template.Users.events({
     },
     'click .close-edit-mode': function() {
         Session.set('currentUser', "");
-    }
+    },
 
+    'click .btn-delUser': function(event){
+
+        const data = this;
+
+        bootbox.confirm({
+          message: '<h4>This will lead to deletion of the selected User record and will delete all the selected User\'s information, Do you still want to delete the Record?</h4>',
+          buttons: {
+              confirm: {
+                  label: 'Yes',
+                  className: 'btn-primary'
+              },
+              cancel: {
+                  label: 'No',
+                  className: 'btn-primary'
+              }
+          },
+          callback: function (result) {
+              
+            if(result){
+                if(Roles.userIsInRole(Meteor.userId(), 'super-admin')){
+                console.log("Delete operation called", data);
+                Meteor.call('deleteSelectedUserSurgeryRecord', data);
+                Meteor.call('deleteSelectedUserAccount', data);
+                }
+            } else { console.log("Operation cancelled!")}
+          }
+      });
+    }
 });

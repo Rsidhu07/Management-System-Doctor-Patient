@@ -33,12 +33,15 @@ Template.viewTableForDocView.helpers({
   viewTableForDocViewPrint(){
     console.log("***********************", (PatientSurgeryRecords.find( { doctorId: Meteor.userId() } ).count()));
     if(PatientSurgeryRecords.find( { doctorId: Meteor.userId() } ).count()){
-    const patID = PatientSurgeryRecords.find( { doctorId: Meteor.userId() } ).fetch();
-    console.log("*****Inside Table VIEW FOR  DOC VIEW", patID);
-    const patientID = [];
-    patID.forEach(element => {
-      patientID.push(element.owner);
+    
+      const patID = PatientSurgeryRecords.find( { doctorId: Meteor.userId() } ).fetch();
+      console.log("*****Inside Table VIEW FOR  DOC VIEW", patID);
+      const patientID = [];
+
+      patID.forEach(element => {
+        patientID.push(element.owner);
     });
+
     console.log("*************VIEW TABLE FOR DOC VIEW**********************", PatientSurgeryRecords.find( { doctorId: Meteor.userId() } ).fetch());
     console.log("*****PaTIENT ID IS********", patientID);
     Session.set('tempPatientOwnerID', patientID);
@@ -259,7 +262,7 @@ Template.viewPatientRecords.events({
           }
       },
       callback: function (result) {
-          
+          console.log("*****************************",result);
         if(result){
             Meteor.call('deleteSelectedSurgeryRecord', data);
           } else { console.log("Operation cancelled!")}
@@ -282,6 +285,24 @@ Template.viewPatientRecords.events({
     Session.set('tempSelectedRecordSurgeryId', this._id);
 
   }  
+
+});
+
+Template.viewTableForAdminView.helpers({
+
+  viewSurgeryrecordsPrint(){
+
+    return PatientSurgeryRecords.find({});
+  }
+
+});
+
+Template.viewVisitTableForAdminView.helpers({
+
+  viewVisitTablesPrint(){
+
+    return PatientVisitRecords.find({});
+  }
 
 });
 

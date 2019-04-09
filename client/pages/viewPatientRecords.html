@@ -7,7 +7,7 @@
                <!-- User profile -->
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                    <h4 class="panel-title">User profile</h4>
+                    <h4 class="panel-title"><b>User profile</b></h4>
                   </div>
                   <div class="panel-body">
                     <div class="profile__avatar">
@@ -29,7 +29,7 @@
                <!-- User info -->
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h4 class="panel-title">User info</h4>
+                  <h4 class="panel-title"><b>User info</b></h4>
                 </div>
                 <div class="panel-body">
                   {{#if recordsPrint}}
@@ -58,7 +58,7 @@
                           </tr>
                           <tr>
                             <th><strong>Click on "Edit" to edit the user profile.</strong></th>
-                            <td><a href="/update/patientProfileUpdate/"><button class="btn-edit btn-warning">Edit</button></a></td>
+                            <td><a href="/update/userProfileUpdate/"><button class="btn-edit btn-warning">Edit</button></a></td>
                           </tr>
                         </tbody>
                       </table>
@@ -69,7 +69,7 @@
                   {{/if}}
                 </div>
               </div>
-                {{#if isInRole 'super-admin,patient'}}
+                {{#if isInRole 'patient'}}
                  <!--  View Surgery Records -->
                 <div class="panel panel-default">
                   <div class="panel-heading">
@@ -215,6 +215,20 @@
                     <div class="panel-body"> 
                       {{> viewTableForDocView }}
                       {{> viewVisitTableForDocView}}
+                    </div>
+                </div>    
+               <!-- *************************** -->
+               {{/if}}
+
+               {{#if isInRole 'super-admin'}}
+                <!-- Super Admin View of records -->
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title"><b>Surgery Records of All Patients...</b></h4>
+                  </div>
+                    <div class="panel-body"> 
+                      {{> viewTableForAdminView }}
+                      {{> viewVisitTableForAdminView}}
                     </div>
                 </div>    
                <!-- *************************** -->
@@ -428,3 +442,56 @@
     </tbody>
   </table>
 </template>
+
+<template name="viewTableForAdminView">
+
+  <table class="table profile__table">
+    <tbody>
+      <tr>
+        <th>Surgery Number</th>
+        <th>Date of Surgery</th>
+        <th>Surgery Description</th> 
+        <th>By Doctor</th>
+        <th>By Patient</th>
+      </tr>
+      {{#each viewSurgeryrecordsPrint}}
+      <tr>
+        <td>{{surgeryNumber}}</td>
+        <td>{{dateofSurgery}}</td>
+        <td>{{surgeryDescription}}</td>
+        <td>{{doctorName}}</td>
+        <td>{{username}}</td>
+      </tr>
+      {{/each}}   
+    </tbody>
+  </table>
+
+</template>
+
+<template name="viewVisitTableForAdminView">
+  <br><br>
+                    
+  <h4><b>Visit details of all Patients...</b></h4> 
+  <table class="table profile__table">
+    <tbody>
+      <tr>
+        <th>Surgery Number</th>
+        <th>Visit number</th>
+        <th>Visit Date</th>
+        <th>Visit Description</th>
+        <th>By Patient</th>
+      </tr>
+      {{#each viewVisitTablesPrint}}
+      <tr>
+        <td>{{surgeryNumber}}</td>
+        <td>{{visitNumber}}</td>
+        <td>{{dateofVisit}}</td>
+        <td>{{visitDescription}}</td>
+        <td>{{username}}</td>
+      </tr>
+      {{/each}}  
+     
+    </tbody>
+  </table>
+</template>
+
