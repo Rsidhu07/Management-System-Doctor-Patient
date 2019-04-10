@@ -1,13 +1,13 @@
 <template name="Users">
         {{#if isInRole 'super-admin'}}
             <h1 class="page-title">Users</h1>
-            <table class= "{{editMode}}">
+            <table class= "{{editMode}} text-med">
                 <tr>
                     <th>User Name (Click on name to toggle admin)</th>
                     <th>Email</th>
                     <th>Created At</th>
                     <th>Roles</th>
-                    <th>View Profile</th>
+                    <th>View User Profile</th>
                     <th>Delete User</th>
 
                 </tr>
@@ -41,12 +41,12 @@
                       <div class="modal-content">
                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
-                          <h4 class="modal-title">User Profile</h4>
+                          <h4 class="modal-title">User Profile of <b>{{currentUserProfileView.fullName}}</b></h4>
                         </div>
                         <div class="modal-body">
-                          <p>This is a small modal.</p>
+                          <p>This is a user's profile view.</p>
                           <table class="table profile__table">
-                                <tbody>
+                                <tbody class="text-large">
                                   <tr>
                                     <th><strong>Full Name</strong></th>
                                      <td>{{currentUserProfileView.fullName}}</td>
