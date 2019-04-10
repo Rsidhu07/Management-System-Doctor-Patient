@@ -7,7 +7,9 @@
                     <th>Email</th>
                     <th>Created At</th>
                     <th>Roles</th>
+                    <th>View Profile</th>
                     <th>Delete User</th>
+
                 </tr>
              {{#each users}} 
             <tr>
@@ -27,10 +29,55 @@
                     </div>
                     {{/if}}
                 </td>
+                <td><button class=" userprofileview btn-info" data-toggle="modal" data-target="#userProfileViewModal">Click Me</button></td>
                 <td><button class="btn-delUser btn-danger">Delete this User</button></td>
             </tr>
                 {{/each}}  
             </table>
+
+            <!-- View user profile Modal starts here.... -->
+            <div class="modal fade" id="userProfileViewModal" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">User Profile</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>This is a small modal.</p>
+                          <table class="table profile__table">
+                                <tbody>
+                                  <tr>
+                                    <th><strong>Full Name</strong></th>
+                                     <td>{{currentUserProfileView.fullName}}</td>
+                                  </tr>
+                                  <tr>
+                                    <th><strong>Date of Birth</strong></th>
+                                    <td>{{currentUserProfileView.dateofBirth}}</td>
+                                  </tr>
+                                  <tr>
+                                    <th><strong>Location</strong></th>
+                                    <td>{{currentUserProfileView.location}}</td>
+                                  </tr>
+                                  <tr>
+                                    <th><strong>Nationality</strong></th>
+                                    <td>{{currentUserProfileView.nationality}}</td>
+                                  </tr>
+                                  <tr>
+                                    <th><strong>Blood Group</strong></th>
+                                    <td>{{currentUserProfileView.bloodGroup}}</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn-info" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            <!-- View user profile Modal ends here.... -->
+
         {{else}}
         <h1>You are not Authorised to View this Page</h1>
         {{/if}}

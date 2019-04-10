@@ -6,31 +6,30 @@
 
   <form class="add-patientDetails">
     <div class="  form-group">
-      <label for="fullName">Full Name</label>
+      <label for="fullName">Name</label>
       <input type="text" class="form-control" value="{{currentUserName}}" id="fullName" placeholder="Full Name">
     </div>
-
+  
     <div class="form-group">
       <label for="dateofBirth">Date of Birth</label>
-      <input type="date" class="form-control" id="dateofBirth" placeholder="Date of Birth">
+      <input type="date" class="form-control" value="{{currentProfileRecord.dateofBirth}}" id="dateofBirth" placeholder="Date of Birth">
     </div>
 
     <div class="form-group">
       <label for="location">Location</label>
-      <input type="text" class="form-control" id="location" placeholder="Location">
+      <input type="text" class="form-control" value="{{currentProfileRecord.location}}" id="location" placeholder="Location">
     </div>
 
     <div class="form-group">
       <label for="nationality">Nationality</label>
-      <input type="text" class="form-control" id="nationality" placeholder="Nationality">
+      <input type="text" class="form-control" value="{{currentProfileRecord.nationality}}" id="nationality" placeholder="Nationality">
     </div>
 
     <div class="form-group">
       <label for="bloodGroup">BloodGroup</label>
-      <input type="text" class="form-control" id="bloodGroup" placeholder="BloodGroup">
+      <input type="text" class="form-control" value="{{currentProfileRecord.bloodGroup}}" id="bloodGroup" placeholder="BloodGroup">
     </div>
-
-
+  
     <div class="form-group">
       <label for="inputFile">Upload profile picture</label>
       <input type="file" id="inputFile">
@@ -41,6 +40,7 @@
 
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
+
 
   {{#if isInRole 'patient'}}
 
@@ -68,11 +68,7 @@
   </form>
   {{/if}}
 
-  <!-- <br><br>     
-      {{#each fileRef}}
-      <img src="http://localhost:3000/images/{{fileRef}}" alt="FileImageUploaded" width="250" height="150" />
-      {{/each}}
-       -->
+ 
   {{else}}
   <h3>You must be logged in to access this page!</h3>
 

@@ -1,10 +1,11 @@
 import moment from 'moment';
-
+import PatientDocRecords from '../../imports/collections';
 
 
 Template.Users.onCreated(function(){
     this.autorun(() => {
         this.subscribe('allUsers');
+        this.subscribe('allPatients');
     });
 });
 
@@ -29,6 +30,11 @@ Template.Users.helpers({
         let user= Session.get('currentUser');
         return user._id === this._id;
         }
+    },
+    currentUserProfileView(){
+        if(Session.get('SelectedUsersProfiledata')){
+        return Session.get('SelectedUsersProfiledata');
+        }
     }
 });
 
@@ -46,12 +52,17 @@ Template.Users.events({
         Session.set('currentUser', "");
     },
 
+    'click .userprofileview': function(){
+    let userProfileRecord = PatientDocRecords.find({owner: this._id}).fetch();
+    Session.set('SelectedUsersProfiledata', userProfileRecord[0]);
+    },
+
     'click .btn-delUser': function(event){
 
         const data = this;
 
         bootbox.confirm({
-          message: '<h4>This will lead to deletion of the selected User record and will delete all the selected User\'s information, Do you still want to delete the Record?</h4>',
+          message: '<h4>This will lead to deletion of the selected User record and will delete all the selected User\'s information, Do you still want to delete the User Account?</h4>',
           buttons: {
               confirm: {
                   label: 'Yes',

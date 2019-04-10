@@ -1,4 +1,5 @@
 import './updatePatientRecords.html';
+import PatientDocRecords from '../../imports/collections';
 import Images from '../../imports/imagesCollection.js';
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
@@ -8,6 +9,15 @@ Template.updatePatientRecords.helpers({
   currentUserName(){
         
    return Meteor.user().profile.name;
+  },
+  currentUpload() {
+    return Template.instance().currentUpload.get();
+  },
+  currentProfileRecord(){
+    if(PatientDocRecords.findOne({owner: Meteor.userId()})){
+    let userRecord = PatientDocRecords.findOne({owner: Meteor.userId()});
+    return userRecord;
+    }
   }
 });
 
@@ -113,12 +123,6 @@ Template.updatePatientRecords.events({
     Meteor.subscribe('files.images.all');
    
 });
-  
-  Template.updatePatientRecords.helpers({
-    currentUpload() {
-      return Template.instance().currentUpload.get();
-    },
-  });
   
 
 
