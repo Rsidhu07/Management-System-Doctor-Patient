@@ -6,7 +6,7 @@
                     <th>User Name (Click on name to toggle admin)</th>
                     <th>Email</th>
                     <th>Created At</th>
-                    <th>Roles</th>
+                    <th>Role</th>
                     <th>View User Profile</th>
                     <th>Delete User</th>
 
@@ -29,8 +29,12 @@
                     </div>
                     {{/if}}
                 </td>
-                <td><button class=" userprofileview btn-info" data-toggle="modal" data-target="#userProfileViewModal">Click Me</button></td>
-                <td><button class="btn-delUser btn-danger">Delete this User</button></td>
+                <td><button class=" userprofileview btn-info" data-toggle="modal" data-target="#userProfileViewModal"><i class="fa fa-user fa-2x" aria-hidden="true"></i> </button></td>
+                {{#if $eq currentUser _id}}
+                <td><button class="btn-delUser btn-default" disabled><i class="fa fa-trash fa-2x" aria-hidden="true"></i></button></td>
+                {{else}}
+                <td><button class="btn-delUser btn-danger"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></button></td>
+                {{/if}}
             </tr>
                 {{/each}}  
             </table>

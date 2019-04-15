@@ -31,6 +31,10 @@ Template.Users.helpers({
         return user._id === this._id;
         }
     },
+    currentUser: function() {
+        return Meteor.userId();
+      },
+
     currentUserProfileView(){
         if(Session.get('SelectedUsersProfiledata')){
         return Session.get('SelectedUsersProfiledata');

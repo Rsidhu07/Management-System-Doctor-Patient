@@ -58,7 +58,7 @@
                           </tr>
                           <tr>
                             <th><strong>Click on "Edit" to edit the user profile.</strong></th>
-                            <td><a href="/update/userProfileUpdate/"><button class="btn-edit btn-warning">Edit</button></a></td>
+                            <td><a href="/update/userProfileUpdate/"><button class="btn-edit btn-warning"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></button></a></td>
                           </tr>
                         </tbody>
                       </table>
@@ -92,15 +92,15 @@
                           <td>{{surgeryNumber}}</td>
                           <td>{{dateofSurgery}}</td>
                           <td>{{surgeryDescription}}</td>
-                          <td><button class="btn-edit btn-warning" data-toggle="modal" data-target="#myModalEdit">Edit</button></td>
-                          <td><button class="btn-addVisit btn-info" data-toggle="modal" data-target="#myModalAddVisit">AddVisit</button></td>
-                          <td><button class="btn-del btn-danger">Delete</button></td>
+                          <td><button class="btn-edit btn-warning" data-toggle="modal" data-target="#myModalEdit"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></button></td>
+                          <td><button class="btn-addVisit btn-info" data-toggle="modal" data-target="#myModalAddVisit"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>Visit</button></td>
+                          <td><button class="btn-del btn-danger"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></button></td>
                           <td>{{doctorName}}</td>
                         </tr>
                         {{/each}}   
                       </tbody>
                     </table>
-                    <button type="button" class="btn btn-primary btn-info " data-toggle="modal" data-target="#myModal">Add more Surgery Records</button>
+                    <button type="button" class="btn btn-primary btn-info " data-toggle="modal" data-target="#myModal"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i> </button>
                     <br><br>
                     
                     <h4>Visit details</h4>
@@ -120,8 +120,8 @@
                           <td>{{visitNumber}}</td>
                           <td>{{dateofVisit}}</td>
                           <td>{{visitDescription}}</td>
-                          <td><button class="btn-edit editVisitBtn btn-warning" data-toggle="modal" data-target="#myModalEditVisit">Edit</button></td>
-                          <td><button class="btn-delVisit btn-danger">Delete</button></td>
+                          <td><button class="btn-edit editVisitBtn btn-warning" data-toggle="modal" data-target="#myModalEditVisit"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></button></td>
+                          <td><button class="btn-delVisit btn-danger"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></button></td>
                         </tr>
                         {{/each}}  
                        
